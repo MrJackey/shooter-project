@@ -1,30 +1,44 @@
 //Shooter project 08
 //
 //Input manager
-
-public PVector inputAxis = new PVector(0,0);
-public boolean fire = false;
+boolean fire = false;
+boolean left = false;
+boolean right = false;
 
 void keyPressed()
 {
 	//---MOVEMENT---
 	if (keyCode == LEFT || key == 'a' || key == 'A')
-		inputAxis.x = (-1);
+		left = true;
 	if (keyCode == RIGHT || key == 'd' || key == 'D')
-		inputAxis.x = (1);
+		right = true;
 	
 	//---ACTIONS---
-	if(keyCode == SPACE)
+	if(key == ' ')
 		fire = true;
 }
 
 void keyReleased()
 {
 	if (keyCode == LEFT || key == 'a' || key == 'A')
-		inputAxis.x = (0);
+		left = false;
 	if (keyCode == RIGHT || key == 'd' || key == 'D')
-		inputAxis.x = (0);
+		right = false;
 
-	if(keyCode == SPACE)
+	if(key == ' ')
 		fire = false;
+}
+
+PVector InputAxis(){
+	PVector inputAxis = new PVector(0,0);
+	if (left)
+		inputAxis.x -= 1;
+	if (right)
+		inputAxis.x += 1;
+
+	return inputAxis;
+}
+
+boolean InputFire(){
+	return fire;
 }
