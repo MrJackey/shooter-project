@@ -1,15 +1,14 @@
 // Jacob
 
-class Player {
-  PVector pos, vel;
+class Player extends GameObject {
   int w = 50, 
     h = 20,
     speed = 6;
   color col = color(0, 205, 0);
 
   Player(float x, float y) {
-    this.pos = new PVector(x, y);
-    this.vel = new PVector();
+    super();
+    this.pos.set(x, y);
   }
 
   void draw() {
