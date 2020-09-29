@@ -6,13 +6,13 @@ public class Bullet extends GameObject{
 	float speed = 800,
 	bWidth = 5,
 	bHeight = bWidth * 3;
-	int fireHeight = 20;
+	int dir;
 	boolean removeMe = false;
 
-	Bullet()
+	Bullet(PVector startPos, int direction)
 	{
-		pos = player.pos.copy();
-		pos.y -= fireHeight;
+		pos = startPos.copy();
+		dir = direction;
 	}
 
 	void draw(){
@@ -22,7 +22,7 @@ public class Bullet extends GameObject{
 	void move(){
 		OutOfBounds();
 
-		PVector move = new PVector(0, -1);
+		PVector move = new PVector(0, dir);
 		pos.add(move.mult(Time.deltaTime * speed));
 	}
 

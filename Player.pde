@@ -57,6 +57,6 @@ class Player extends GameObject {
 
       bullets[i+1] = bullets[i];
     }
-    bullets[0] = new Bullet();
+    bullets[0] = new Bullet(pos, -1);
   }
 }
