@@ -1,6 +1,7 @@
 SceneManager sceneManager = new SceneManager();
 Player player;
 Bullet bullet;
+Enemy[] enemies = new Enemy[3];
 
 void setup() {
 	size(800, 800);
@@ -10,6 +11,10 @@ void setup() {
 
 	player = new Player(width / 2, height - 100);
 	bullet = new Bullet();
+
+  enemies[0] = new Squid();
+  enemies[1] = new Crab();
+  enemies[2] = new Octopus();
 }
 
 void draw() {
