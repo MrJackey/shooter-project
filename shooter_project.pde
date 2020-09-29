@@ -1,3 +1,4 @@
+SceneManager sceneManager = new SceneManager();
 Player player;
 
 void setup() {
@@ -7,7 +8,9 @@ void setup() {
 }
 
 void draw() {
-  background(0);
-
-  player.draw();
+  switch (sceneManager.state) {
+    case INGAME :
+      sceneManager.drawGame();
+    break;	
+  }
 }
