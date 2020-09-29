@@ -1,8 +1,7 @@
 class Octopus extends Enemy {
 
-  Octopus() {
-    super();
-    this.pos.set(width / 2, height / 2);
+  Octopus(float x, float y) {
+    super(x, y);
   }
 
   void draw() {

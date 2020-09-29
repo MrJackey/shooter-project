@@ -14,11 +14,10 @@ class SceneManager {
   void drawGame() {
     background(0);
 
-    for (Enemy enemy : enemies) {
-      enemy.draw();
-    }
-
-    player.draw();
     player.move();
+    enemyManager.update();
+
+    enemyManager.draw();
+    player.draw();
   }
 }
