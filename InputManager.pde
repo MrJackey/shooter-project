@@ -1,6 +1,8 @@
 //Shooter project 08
 //Robin
 //Input manager
+
+PVector inputAxis = new PVector(0,0);
 boolean fire = false;
 boolean left = false;
 boolean right = false;
@@ -29,16 +31,16 @@ void keyReleased()
 		fire = false;
 }
 
-PVector InputAxis(){
-	PVector inputAxis = new PVector(0,0);
+PVector inputAxis(){
+	inputAxis.set(0, 0);
 	if (left)
 		inputAxis.x -= 1;
 	if (right)
 		inputAxis.x += 1;
 
-	return inputAxis;
+	return inputAxis.copy();
 }
 
-boolean InputFire(){
+boolean inputFire(){
 	return fire;
 }

@@ -14,6 +14,6 @@ class SceneManager {
     background(0);
 
     player.draw();
-    player.Move();
+    player.move();
   }
 }

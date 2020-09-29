@@ -11,7 +11,7 @@ void setup() {
 }
 
 void draw() {
-	DeltaTimeBegin();
+	deltaTimeBegin();
 
 	switch (sceneManager.state) {
 		case INGAME :
@@ -19,18 +19,18 @@ void draw() {
 		break;	
 	}
 
-	DeltaTimeEnd();
+	deltaTimeEnd();
 }
 
 //Run function as first command in draw()
-void DeltaTimeBegin()
+void deltaTimeBegin()
 {
 	Time.currentTime = millis();
 	Time.deltaTime = (Time.currentTime - Time.time);
 	Time.deltaTime *= Time.MULTI_DELTA;
 }
 //Run function as last command in draw()
-void DeltaTimeEnd()
+void deltaTimeEnd()
 {
 	Time.time = Time.currentTime;
 }

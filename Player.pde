@@ -2,8 +2,8 @@
 
 class Player extends GameObject {
   int speed = 195;
-  float pWidth = 50,
-        pHeight = 20;
+  int pWidth = 50,
+  pHeight = 20;
   color col = color(0, 205, 0);
 
   Player(float x, float y) {
@@ -20,13 +20,13 @@ class Player extends GameObject {
     rect(pos.x, pos.y - pHeight / 2, pWidth * 0.25, pHeight * 0.9, 5);
   }
 
-  void Move()
+  void move()
   {
-    PVector inputTemp = InputAxis().copy();
+    PVector inputTemp = inputAxis();
 
-    if (pos.x <= (0 + pWidth / 2) && inputTemp.x < 0)
+    if (pos.x <= (pWidth / 2) && inputTemp.x < 0)
      inputTemp.x = 0;
-    else if (pos.x >= (width - pWidth / 2) && inputTemp.x > 0)
+   else if (pos.x >= (width - pWidth / 2) && inputTemp.x > 0)
      inputTemp.x = 0;
 
    pos.add(inputTemp.mult(Time.deltaTime * speed));

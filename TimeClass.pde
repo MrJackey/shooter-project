@@ -2,16 +2,14 @@
 //
 //Delta time
 
-public static class Time
-{
+public static class Time {
 	static public float deltaTime;
 	static public long time;
 	static public long currentTime;
 	static public final float MULTI_DELTA = 0.001f;
 };
 
-public class Timer
-{
+public class Timer {
 	private int _waitTime;
 	private long _timerStart;
 	private boolean _timerActive = false;
@@ -21,7 +19,7 @@ public class Timer
 		_waitTime = waitTime;
 	}
 
-	public void Start()
+	public void start()
 	{
 		if (_timerActive)
 			return;
@@ -30,7 +28,7 @@ public class Timer
 		_timerStart = millis();
 	}
 
-	public void Stop()
+	public void stop()
 	{
 		if (!_timerActive)
 			return;
@@ -38,7 +36,7 @@ public class Timer
 		_timerActive = false;
 	}
 
-	public boolean Time()
+	public boolean time()
 	{
 		if (_timerActive && (_waitTime <= (Time.currentTime - _timerStart)))
 		{
