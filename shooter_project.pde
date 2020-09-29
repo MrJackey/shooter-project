@@ -1,5 +1,6 @@
 SceneManager sceneManager = new SceneManager();
 Player player;
+Bullet bullet;
 
 void setup() {
 	size(800, 800);
@@ -8,6 +9,7 @@ void setup() {
 	surface.setLocation(0,0);
 
 	player = new Player(width / 2, height - 100);
+	bullet = new Bullet();
 }
 
 void draw() {
@@ -18,7 +20,6 @@ void draw() {
 		sceneManager.drawGame();
 		break;	
 	}
-
 	deltaTimeEnd();
 }
 
