@@ -1,9 +1,9 @@
 // Jacob
 
 class Player extends GameObject {
-  int w = 50, 
-    h = 20,
-    speed = 6;
+  int speed = 195;
+  float pWidth = 50,
+        pHeight = 20;
   color col = color(0, 205, 0);
 
   Player(float x, float y) {
@@ -16,7 +16,19 @@ class Player extends GameObject {
     fill(col);
     rectMode(CENTER);
 
-    rect(pos.x, pos.y, w, h, 7);
-    rect(pos.x, pos.y - h / 2, w * 0.25, h * 0.9, 5);
+    rect(pos.x, pos.y, pWidth, pHeight, 7);
+    rect(pos.x, pos.y - pHeight / 2, pWidth * 0.25, pHeight * 0.9, 5);
   }
+
+  void Move()
+  {
+    PVector inputTemp = InputAxis().copy();
+
+    if (pos.x <= (0 + pWidth / 2) && inputTemp.x < 0)
+     inputTemp.x = 0;
+    else if (pos.x >= (width - pWidth / 2) && inputTemp.x > 0)
+     inputTemp.x = 0;
+
+   pos.add(inputTemp.mult(Time.deltaTime * speed));
+ }
 }

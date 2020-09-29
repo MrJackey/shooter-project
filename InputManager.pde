@@ -1,5 +1,5 @@
 //Shooter project 08
-//
+//Robin
 //Input manager
 boolean fire = false;
 boolean left = false;
