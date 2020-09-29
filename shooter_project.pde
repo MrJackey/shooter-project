@@ -9,7 +9,6 @@ void setup() {
 	surface.setLocation(0,0);
 
 	player = new Player(width / 2, height - 100);
-
   enemies[0] = new Squid();
   enemies[1] = new Crab();
   enemies[2] = new Octopus();
@@ -23,7 +22,6 @@ void draw() {
 		sceneManager.drawGame();
 		break;	
 	}
-
 	deltaTimeEnd();
 }
 
