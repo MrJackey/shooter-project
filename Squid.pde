@@ -2,9 +2,8 @@
 
 class Squid extends Enemy {
 
-  Squid() {
-    super();
-    this.pos.set(width * 0.25, height / 2);
+  Squid(float x, float y) {
+    super(x, y);
   }
 
   void draw() {

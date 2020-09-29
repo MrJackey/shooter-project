@@ -1,6 +1,6 @@
 SceneManager sceneManager = new SceneManager();
+EnemyManager enemyManager = new EnemyManager();
 Player player;
-Enemy[] enemies = new Enemy[3];
 
 void setup() {
 	size(800, 800);
@@ -9,10 +9,7 @@ void setup() {
 	surface.setLocation(0,0);
 
 	player = new Player(width / 2, height - 100);
-
-  enemies[0] = new Squid();
-  enemies[1] = new Crab();
-  enemies[2] = new Octopus();
+  enemyManager.loadEnemies();
 }
 
 void draw() {

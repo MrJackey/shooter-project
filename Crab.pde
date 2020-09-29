@@ -1,8 +1,7 @@
 class Crab extends Enemy {
 
-  Crab() {
-   super();
-   this.pos.set(width * 0.75, height / 2); 
+  Crab(float x, float y) {
+   super(x, y); 
   }
 
   void draw() {
