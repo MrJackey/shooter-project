@@ -7,8 +7,6 @@ class Player extends GameObject {
   color col = color(0, 205, 0);
   
   Bullet[] bullets = new Bullet[5];
-  PVector firingPos;
-  int firingHeight = 40;
 
   Player(float x, float y) {
     super();
@@ -23,7 +21,7 @@ class Player extends GameObject {
     rect(pos.x, pos.y, pWidth, pHeight, 7);
     rect(pos.x, pos.y - pHeight / 2, pWidth * 0.25, pHeight * 0.9, 5);
 
-    UpdateBullets();
+    updateBullets();
   }
 
   void move()
@@ -36,12 +34,9 @@ class Player extends GameObject {
      inputTemp.x = 0;
 
    pos.add(inputTemp.mult(Time.deltaTime * speed));
-   
-   firingPos = pos.copy();
-   firingPos.y += firingHeight;
  }
 
- void UpdateBullets() {
+ void updateBullets() {
   for (int i = 0; i < bullets.length; ++i){
     if (bullets[i] == null)
       continue;
@@ -50,8 +45,8 @@ class Player extends GameObject {
       continue;
     }
 
-    bullets[i].draw();
     bullets[i].move();
+    bullets[i].draw();
     }
   }
 
