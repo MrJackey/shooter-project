@@ -20,7 +20,6 @@ void draw() {
 		sceneManager.drawGame();
 		break;	
 	}
-
 	deltaTimeEnd();
 }
 

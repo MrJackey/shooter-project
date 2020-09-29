@@ -1,3 +1,4 @@
+//Jacob
 class GameObject {
 	PVector pos = new PVector(),
 	vel = new PVector(),

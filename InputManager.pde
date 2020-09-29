@@ -3,7 +3,6 @@
 //Input manager
 
 PVector inputAxis = new PVector(0,0);
-boolean fire = false;
 boolean left = false;
 boolean right = false;
 
@@ -17,7 +16,7 @@ void keyPressed()
 	
 	//---ACTIONS---
 	if(key == ' ')
-		fire = true;
+		player.fire();
 }
 
 void keyReleased()
@@ -26,9 +25,6 @@ void keyReleased()
 		left = false;
 	if (keyCode == RIGHT || key == 'd' || key == 'D')
 		right = false;
-
-	if(key == ' ')
-		fire = false;
 }
 
 PVector inputAxis(){
@@ -39,8 +35,4 @@ PVector inputAxis(){
 		inputAxis.x += 1;
 
 	return inputAxis.copy();
-}
-
-boolean inputFire(){
-	return fire;
 }
