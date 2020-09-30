@@ -15,7 +15,7 @@ void setup() {
 void draw() {
 	deltaTimeBegin();
 
-	switch (sceneManager.state) {
+	switch (sceneManager.scene) {
 		case TITLESCREEN :
 			sceneManager.drawTitleScreen();
 		break;	

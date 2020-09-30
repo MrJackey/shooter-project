@@ -1,15 +1,29 @@
 //Jacob
-enum GameState {
+enum GameScene {
   TITLESCREEN,
   GAME,
 }
 
+enum GameState {
+  RUNNING,
+  PAUSED,
+  GAMEOVER,
+}
+
 class SceneManager {
+  GameScene scene;
   GameState state;
   Button[] buttons;
 
   SceneManager() {
-    state = GameState.TITLESCREEN;
+    scene = GameScene.TITLESCREEN;
+    state = GameState.RUNNING;
+  }
+
+  void setState(GameState newState) {
+    if (scene == GameScene.GAME) {
+      state = newState;
+    }
   }
 
   void loadTitleScreen() {
@@ -17,6 +31,9 @@ class SceneManager {
     buttons[0] = new Button(width / 2, height / 2, 150, 50, "Start Game", 20, eventFunctions.startGame());
     buttons[1] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
     player = new Player(100, height - 100);
+    
+    scene = GameScene.TITLESCREEN;
+    state = GameState.RUNNING;
   }
 
   void drawTitleScreen() {
@@ -39,16 +56,45 @@ class SceneManager {
   void loadGame() {
     player = new Player(player.pos.x, player.pos.y);
     enemyManager.loadEnemies();
-    state = GameState.GAME;
+    scene = GameScene.GAME;
+    state = GameState.RUNNING;
   }
 
   void drawGame() {
     background(0);
 
-    player.move();
-    enemyManager.update();
+    if (state == GameState.RUNNING) {
+      player.move();
+      enemyManager.update();
+    }
 
     enemyManager.draw();
     player.draw();
+
+    if (state != GameState.RUNNING) 
+      drawState();
+  }
+
+  void togglePause() {
+    if (state != GameState.GAMEOVER && scene == GameScene.GAME)
+      state = state == GameState.RUNNING ? GameState.PAUSED : GameState.RUNNING;
+  }
+
+  void reset() {
+    if (state == GameState.GAMEOVER) {
+      loadTitleScreen();
+    }
+  }
+
+  void drawState() {
+    fill(player.col);
+    textAlign(CENTER, CENTER);
+    textSize(64);
+    text(state.name(), width / 2, height / 2);
+
+    if (state == GameState.GAMEOVER) {
+      textSize(40);
+      text("Press 'R' to return to the title screen", width / 2, height / 2 + 64);
+    }
   }
 }

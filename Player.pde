@@ -55,6 +55,9 @@ class Player extends GameObject {
   }
 
   void fire() { 
+    if (sceneManager.state == GameState.GAMEOVER)
+      return;
+
     for (int i = bullets.length - 2; i >= 0; i--) {
       if (bullets[i] == null)
         continue;
