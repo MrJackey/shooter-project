@@ -5,7 +5,8 @@ class Enemy extends GameObject {
   int radius,
     speed = 10,
     anim = 0;
-
+  Bullet bullet;
+  
   Enemy(float x, float y) {
     super();
     this.pos.set(x, y);

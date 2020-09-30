@@ -75,23 +75,26 @@ class EnemyManager {
       }
     }
   }
-  void EnemyFire(int random) {
+  void EnemyFire(int randColumn) {
     for (int i = enemyRowCount - 1; i >= 0; i--) {
 
-      if (deadRows[random] != 1 && enemyRows[i][random] != null){
+      if (deadRows[randColumn] != 1 && enemyRows[i][randColumn] != null){
         //Fire from enemy
-        enemyRows[i][random].fire();
+        enemyRows[i][randColumn].fire();
         return;
       }
-      if (i == 0 || deadRows[random] == 1) {
-        deadRows[random] = 1;
-        random = int(random(0, enemyPerRowCount));
+      //If no enemies are alive on the
+      if (i == 0 || deadRows[randColumn] == 1) {
+        deadRows[randColumn] = 1;
+        randColumn = int(random(0, enemyPerRowCount));
         i = enemyRowCount - 1;
       }
+      //If no enemies are alive
       if (!contains(deadRows, 0)) {
         enemyRowCount = 0;
       }
     } 
+}
   boolean bulletIsColliding(Bullet bullet) {
     for (Enemy[] enemyRow : enemyRows) {
       for (int i = 0; i < enemyRow.length; i++) {
@@ -105,13 +108,4 @@ class EnemyManager {
     }
     return false;
   }
-}
-
-public boolean contains(int[] arr, int check) {
-  for (int i = 0; i < arr.length; ++i) {
-    if (arr[i] == check) {
-      return true;
-    }
-  }
-  return false;
 }
