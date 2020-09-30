@@ -4,6 +4,7 @@ class Squid extends Enemy {
 
   Squid(float x, float y) {
     super(x, y);
+    pointValue = 30;
   }
 
   void draw() {

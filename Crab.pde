@@ -2,6 +2,7 @@ class Crab extends Enemy {
 
   Crab(float x, float y) {
    super(x, y); 
+   pointValue = 50;
   }
 
   void draw() {

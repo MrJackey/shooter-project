@@ -101,6 +101,7 @@ class EnemyManager {
         if (enemyRow[i] == null) continue;
 
         if (bullet.isColliding(enemyRow[i])) {
+          scoreManager.enemyKilled(enemyRow[i]);
           enemyRow[i] = null;
           return true;
         }

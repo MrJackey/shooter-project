@@ -4,7 +4,8 @@ class Enemy extends GameObject {
   float fireRate;
   int radius,
     speed = 10,
-    anim = 0;
+    anim = 0,
+    pointValue = 0;
   Bullet bullet;
   
   Enemy(float x, float y) {

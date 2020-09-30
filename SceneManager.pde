@@ -54,6 +54,7 @@ class SceneManager {
   }
 
   void loadGame() {
+    buttons = new Button[0];
     player = new Player(player.pos.x, player.pos.y);
     enemyManager.loadEnemies();
     scene = GameScene.GAME;
@@ -96,5 +97,6 @@ class SceneManager {
       textSize(40);
       text("Press 'R' to return to the title screen", width / 2, height / 2 + 64);
     }
+    scoreManager.drawScore();
   }
 }

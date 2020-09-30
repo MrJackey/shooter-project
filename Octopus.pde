@@ -1,9 +1,10 @@
 // Jacob
 
 class Octopus extends Enemy {
-
+  
   Octopus(float x, float y) {
     super(x, y);
+    pointValue = 40;
   }
 
   void draw() {
