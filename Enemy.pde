@@ -2,8 +2,7 @@
 
 class Enemy extends GameObject {
   float fireRate;
-  int size = 32,
-    radius = size / 2,
+  int radius,
     speed = 10,
     anim = 0;
 
@@ -12,6 +11,9 @@ class Enemy extends GameObject {
     this.pos.set(x, y);
     this.vel.set(speed, 0);
     this.dir.set(0, 1);
+    this.objWidth = 32;
+    this.objHeight = objWidth;
+    this.radius = objWidth / 2;
   }
 
   void draw() {
@@ -28,10 +30,10 @@ class Enemy extends GameObject {
     rectMode(CENTER);
 
     PVector leftEye = PVector.fromAngle(oppositeDir.heading() - HALF_PI + 0.5).mult(radius * 0.4);
-    rect(pos.x + leftEye.x, pos.y + leftEye.y, size * 0.15, size * 0.15);
+    rect(pos.x + leftEye.x, pos.y + leftEye.y, objWidth * 0.15, objWidth * 0.15);
 
     PVector rightEye = PVector.fromAngle(oppositeDir.heading() + HALF_PI - 0.5).mult(radius * 0.4);
-    rect(pos.x + rightEye.x, pos.y + rightEye.y, size * 0.15, size * 0.15);
+    rect(pos.x + rightEye.x, pos.y + rightEye.y, objWidth * 0.15, objWidth * 0.15);
   }
 
   void update() {
@@ -40,6 +42,6 @@ class Enemy extends GameObject {
   }
 
   boolean isOutsideBounds() {
-    return (pos.x - size + vel.x * 2 < 0 || pos.x + size + vel.x * 2 > width);
+    return (pos.x - objWidth + vel.x * 2 < 0 || pos.x + objWidth + vel.x * 2 > width);
   }
 }
