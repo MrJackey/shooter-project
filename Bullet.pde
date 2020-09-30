@@ -21,12 +21,13 @@ public class Bullet extends GameObject{
 
 	void move(){
 		OutOfBounds();
-
 		pos.add(PVector.mult(vel, Time.deltaTime * speed));
 	}
 
 	void OutOfBounds(){
 		if (pos.y < 0)
+			removeMe = true;
+		if (pos.y > height)
 			removeMe = true;
 	}
 

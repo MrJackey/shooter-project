@@ -2,6 +2,7 @@ SceneManager sceneManager = new SceneManager();
 EnemyManager enemyManager = new EnemyManager();
 EventFunction eventFunctions = new EventFunction();
 ScoreManager scoreManager = new ScoreManager();
+BulletManager bulletManager = new BulletManager();
 Player player;
 
 void setup() {

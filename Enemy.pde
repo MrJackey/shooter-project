@@ -3,9 +3,9 @@
 class Enemy extends GameObject {
   float fireRate;
   int radius,
-    speed = 10,
-    anim = 0,
-    pointValue = 0;
+  speed = 10,
+  anim = 0,
+  pointValue = 0;
   Bullet bullet;
   
   Enemy(float x, float y) {
@@ -21,14 +21,6 @@ class Enemy extends GameObject {
   void draw() {
     fill(255);
     stroke(255);
-    if (bullet != null) {
-      bullet.move();
-      if (bullet.isColliding(player)) {
-        bullet = null;
-        sceneManager.setState(sceneManager.state.GAMEOVER);
-      } else
-        bullet.draw();
-    }
     strokeWeight(3);
   }
 
@@ -56,6 +48,6 @@ class Enemy extends GameObject {
   }
 
   void fire(){
-    bullet = new Bullet(pos, 1);
+    bulletManager.instantiateAsEnemy(pos);
   }
 }

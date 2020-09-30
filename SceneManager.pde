@@ -64,6 +64,8 @@ class SceneManager {
   void drawGame() {
     background(0);
 
+    bulletManager.update();
+
     if (state == GameState.RUNNING) {
       player.move();
       enemyManager.update();
@@ -74,6 +76,8 @@ class SceneManager {
 
     if (state != GameState.RUNNING) 
       drawState();
+
+    scoreManager.drawScore();
   }
 
   void togglePause() {
@@ -97,6 +101,5 @@ class SceneManager {
       textSize(40);
       text("Press 'R' to return to the title screen", width / 2, height / 2 + 64);
     }
-    scoreManager.drawScore();
   }
 }
