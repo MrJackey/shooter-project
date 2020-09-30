@@ -80,6 +80,7 @@ class EnemyManager {
         Enemy enemy = enemyRows[i][j];
         if (abs(enemy.pos.y - player.pos.y) < enemy.objHeight) {
           sceneManager.setState(GameState.GAMEOVER);
+          return;
         }
       }
     }
