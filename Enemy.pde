@@ -5,6 +5,7 @@ class Enemy extends GameObject {
   int size = 32,
     radius = size / 2,
     speed = 10;
+  Bullet bullet;
 
   Enemy(float x, float y) {
     super();
@@ -16,6 +17,10 @@ class Enemy extends GameObject {
   void draw() {
     fill(255);
     stroke(255);
+    if (bullet != null) {
+      bullet.move();
+      bullet.draw();
+    }
   }
 
   void update() {
@@ -24,5 +29,9 @@ class Enemy extends GameObject {
 
   boolean isOutsideBounds() {
     return (pos.x - size + vel.x * 2 < 0 || pos.x + size + vel.x * 2 > width);
+  }
+
+  void fire(){
+    bullet = new Bullet(pos, 1);
   }
 }

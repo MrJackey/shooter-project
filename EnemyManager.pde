@@ -2,15 +2,20 @@
 
 class EnemyManager {
   int enemyRowCount = 5,
-    enemyPerRowCount = 11,
-    moveCooldDown = 1000,
-    gridY = 50;
+  enemyPerRowCount = 11,
+  moveCooldDown = 1000,
+  fireCoolDown = 1000,
+  gridY = 50;
   Enemy[][] enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
+  int[] deadRows = new int[enemyPerRowCount];
   Timer moveTimer;
+  Timer fireTimer;
 
   EnemyManager() {
     moveTimer = new Timer(moveCooldDown);
     moveTimer.start();
+    fireTimer = new Timer(fireCoolDown);
+    fireTimer.start();
   }
 
   void loadEnemies() {
@@ -45,6 +50,10 @@ class EnemyManager {
       if (advance)
         advance(gridY);
     }
+
+    if (fireTimer.time()) {
+      EnemyFire(int(random(0, enemyPerRowCount)));
+    }
   }
 
   void advance(int dist) {
@@ -66,4 +75,32 @@ class EnemyManager {
       }
     }
   }
+
+  void EnemyFire(int random) {
+    for (int i = enemyRowCount - 1; i >= 0; i--) {
+
+      if (deadRows[random] != 1 && enemyRows[i][random] != null){
+        //Fire from enemy
+        enemyRows[i][random].fire();
+        return;
+      }
+      if (i == 0 || deadRows[random] == 1) {
+        deadRows[random] = 1;
+        random = int(random(0, enemyPerRowCount));
+        i = enemyRowCount - 1;
+      }
+      if (!contains(deadRows, 0)) {
+        enemyRowCount = 0;
+      }
+    } 
+  }
+}
+
+public boolean contains(int[] arr, int check) {
+  for (int i = 0; i < arr.length; ++i) {
+    if (arr[i] == check) {
+      return true;
+    }
+  }
+  return false;
 }
