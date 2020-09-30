@@ -65,6 +65,24 @@ class EnemyManager {
         enemy.update();
       }
     }
+    checkPlayerCollision();
+  }
+
+  void checkPlayerCollision() {
+    for (int i = enemyRowCount - 1; i >= 0; i--) {
+      if (deadRows[i] == 1)
+        continue;
+
+      for (int j = enemyPerRowCount - 1; j >= 0; j--) {
+        if (enemyRows[i][j] == null) 
+          continue;
+        
+        Enemy enemy = enemyRows[i][j];
+        if (abs(enemy.pos.y - player.pos.y) < enemy.objHeight) {
+          sceneManager.setState(GameState.GAMEOVER);
+        }
+      }
+    }
   }
 
   void draw() {

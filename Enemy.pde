@@ -25,7 +25,7 @@ class Enemy extends GameObject {
       bullet.move();
       if (bullet.isColliding(player)) {
         bullet = null;
-        sceneManager.setState(sceneManager.state.GAMEOVER);
+        sceneManager.setState(GameState.GAMEOVER);
       } else
         bullet.draw();
     }
