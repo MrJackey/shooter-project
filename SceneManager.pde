@@ -14,6 +14,7 @@ class SceneManager {
   GameScene scene;
   GameState state;
   Button[] buttons;
+  float backgroundPos = 0;
 
   SceneManager() {
     scene = GameScene.TITLESCREEN;
@@ -24,6 +25,28 @@ class SceneManager {
     if (scene == GameScene.GAME) {
       state = newState;
     }
+  }
+
+  void drawBackground() {
+    background(0);
+
+    fill(201, 248, 0);
+    ellipse(width * 0.2, (height * 0.1 + 5 * backgroundPos) % height, 5, 5);
+
+    ellipse(width * 0.4, (height * 0.35 + 7 * backgroundPos) % height, 7, 7);
+
+    ellipse(width * 0.1, (height * 0.75 + 10 * backgroundPos) % height, 10, 10);
+
+    ellipse(width * 0.3, (height * 0.4 + 5 * backgroundPos) % height, 5, 5);
+
+    ellipse(width * 0.8, (height * 0.8 + 10 * backgroundPos) % height, 10, 10);
+
+    ellipse(width * 0.9, (height * 0.1 + 7 * backgroundPos) % height, 7, 7);
+
+    ellipse(width * 0.5, (height * 0.9 + 15 * backgroundPos) % height, 15, 15);
+
+    if (scene == GameScene.GAME && state == GameState.RUNNING)
+      backgroundPos += 0.1;
   }
 
   void loadTitleScreen() {
@@ -37,7 +60,7 @@ class SceneManager {
   }
 
   void drawTitleScreen() {
-    background(0);
+    drawBackground();
 
     player.move();
     player.draw();
@@ -57,12 +80,14 @@ class SceneManager {
     buttons = new Button[0];
     player = new Player(player.pos.x, player.pos.y);
     enemyManager.loadEnemies();
+    enemyManager.resetTimers();
+
     scene = GameScene.GAME;
     state = GameState.RUNNING;
   }
 
   void drawGame() {
-    background(0);
+    drawBackground();
 
     bulletManager.update();
 
@@ -76,7 +101,6 @@ class SceneManager {
 
     if (state != GameState.RUNNING) 
       drawState();
-
     scoreManager.drawScore();
   }
 
