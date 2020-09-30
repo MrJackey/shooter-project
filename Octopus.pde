@@ -9,7 +9,7 @@ class Octopus extends Enemy {
   void draw() {
     super.draw();
     noStroke();
-    arc(pos.x, pos.y, size, size, PI, TWO_PI);
+    arc(pos.x, pos.y, objWidth, objHeight, PI, TWO_PI);
     stroke(255);
     
     if (anim == 0) {

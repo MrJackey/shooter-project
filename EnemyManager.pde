@@ -66,4 +66,18 @@ class EnemyManager {
       }
     }
   }
+
+  boolean bulletIsColliding(Bullet bullet) {
+    for (Enemy[] enemyRow : enemyRows) {
+      for (int i = 0; i < enemyRow.length; i++) {
+        if (enemyRow[i] == null) continue;
+
+        if (bullet.isColliding(enemyRow[i])) {
+          enemyRow[i] = null;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }
