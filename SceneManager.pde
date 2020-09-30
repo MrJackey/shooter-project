@@ -80,6 +80,8 @@ class SceneManager {
     buttons = new Button[0];
     player = new Player(player.pos.x, player.pos.y);
     enemyManager.loadEnemies();
+    enemyManager.resetTimers();
+
     scene = GameScene.GAME;
     state = GameState.RUNNING;
   }

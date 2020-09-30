@@ -11,7 +11,9 @@ class EnemyManager {
   Timer moveTimer;
   Timer fireTimer;
 
-  EnemyManager() {
+  EnemyManager() {}
+
+  void resetTimers() {
     moveTimer = new Timer(moveCooldDown);
     moveTimer.start();
     fireTimer = new Timer(fireCoolDown);
