@@ -3,6 +3,7 @@
 //Fire effect
 
 class FireEffect extends Particle {
+	
 	int posBuffer = 20;
 	int maxXSize = 12;
 	int ySize = 1;
