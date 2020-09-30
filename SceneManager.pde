@@ -102,6 +102,8 @@ class SceneManager {
     if (state != GameState.RUNNING) 
       drawState();
     scoreManager.drawScore();
+
+    particleManager.draw();
   }
 
   void togglePause() {

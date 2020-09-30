@@ -3,10 +3,12 @@
 //Bullet manager
 
 class BulletManager{
-
+	color cpBullet = #00BBBB;
+	color ceBullet = #FF0000;
 	Bullet[] pBullets = new Bullet[2];
 	Bullet[] eBullets = new Bullet[15];
 
+	int effectLifeTime = 100;
 	int pCoolTime = 500;
 	Timer timerCoolDown;
 
@@ -18,22 +20,23 @@ class BulletManager{
 	public void instantiateAsEnemy(PVector position){
 		for (int i = 0; i < eBullets.length; ++i) {
 			if (eBullets[i] == null) {
-				eBullets[i] = new Bullet(position, 1);
+				eBullets[i] = new Bullet(position, 1, ceBullet);
 				continue;
 			}
 		}
 	}
 
 	public void instantiateAsPlayer(PVector position){
-
 		if (!timerCoolDown.time())
 			return;
 
 		if (pBullets[0] == null) {
-			pBullets[0] = new Bullet(position, -1);
+			pBullets[0] = new Bullet(position, -1, cpBullet);
+			particleManager.instaniate(player.pos, effectLifeTime);
 		}
 		else if (pBullets[1] == null) {
-			pBullets[1] = new Bullet(position, -1);
+			pBullets[1] = new Bullet(position, -1, cpBullet);
+			particleManager.instaniate(player.pos, effectLifeTime);
 		}
 	}
 
