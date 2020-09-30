@@ -1,5 +1,6 @@
 SceneManager sceneManager = new SceneManager();
 EnemyManager enemyManager = new EnemyManager();
+EventFunction eventFunctions = new EventFunction();
 Player player;
 
 void setup() {
@@ -8,16 +9,18 @@ void setup() {
 	((java.awt.Canvas) surface.getNative()).requestFocus(); //Sets focus to window
 	surface.setLocation(0,0);
 
-	player = new Player(width / 2, height - 100);
-  enemyManager.loadEnemies();
+	sceneManager.loadTitleScreen();
 }
 
 void draw() {
 	deltaTimeBegin();
 
 	switch (sceneManager.state) {
-		case INGAME :
-		sceneManager.drawGame();
+		case TITLESCREEN :
+			sceneManager.drawTitleScreen();
+		break;	
+		case GAME :
+			sceneManager.drawGame();
 		break;	
 	}
 	deltaTimeEnd();

@@ -36,3 +36,12 @@ PVector inputAxis(){
 
 	return inputAxis.copy();
 }
+
+void mousePressed() {
+	for (Button button : sceneManager.buttons) {
+		if (button.isClicked()) {
+			button.function.run();
+			break;
+		}
+	}
+}
