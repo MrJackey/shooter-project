@@ -22,7 +22,11 @@ class Enemy extends GameObject {
     stroke(255);
     if (bullet != null) {
       bullet.move();
-      bullet.draw();
+      if (bullet.isColliding(player)) {
+        bullet = null;
+        sceneManager.setState(sceneManager.state.GAMEOVER);
+      } else
+        bullet.draw();
     }
     strokeWeight(3);
   }

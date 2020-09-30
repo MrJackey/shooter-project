@@ -17,6 +17,10 @@ void keyPressed()
 	//---ACTIONS---
 	if(key == ' ')
 		player.fire();
+	if (key == 'p' || key == 'P')
+		sceneManager.togglePause();
+	if (key == 'r' || key == 'R')
+		sceneManager.reset();
 }
 
 void keyReleased()
