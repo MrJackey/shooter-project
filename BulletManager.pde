@@ -8,11 +8,12 @@ class BulletManager{
 	Bullet[] pBullets = new Bullet[2];
 	Bullet[] eBullets = new Bullet[15];
 
-	int effectLifeTime = 100;
+	int pShootCooldown = 100;
 	int pCoolTime = 500;
 	Timer timerCoolDown;
 
 	BulletManager(){
+		//Move to player
 		timerCoolDown = new Timer(pCoolTime);
 		timerCoolDown.start();
 	}
@@ -21,7 +22,7 @@ class BulletManager{
 		for (int i = 0; i < eBullets.length; ++i) {
 			if (eBullets[i] == null) {
 				eBullets[i] = new Bullet(position, 1, ceBullet);
-				continue;
+				break;
 			}
 		}
 	}
@@ -30,13 +31,12 @@ class BulletManager{
 		if (!timerCoolDown.time())
 			return;
 
-		if (pBullets[0] == null) {
-			pBullets[0] = new Bullet(position, -1, cpBullet);
-			particleManager.instaniate(player.pos, effectLifeTime);
-		}
-		else if (pBullets[1] == null) {
-			pBullets[1] = new Bullet(position, -1, cpBullet);
-			particleManager.instaniate(player.pos, effectLifeTime);
+		for (int i = 0; i < pBullets.length; ++i) {
+			if (pBullets[i] == null) {
+				pBullets[i] = new Bullet(position, -1, cpBullet);
+				particleManager.instaniate(player.pos, pShootCooldown);
+				break;
+			}
 		}
 	}
 
@@ -54,7 +54,6 @@ class BulletManager{
 				pBullets[i] = null;
 				continue;
 			}
-			pBullets[i].draw();
 		}
 		//----Bullet update enemy----
 		for (int i = 0; i < eBullets.length; ++i) {
@@ -66,9 +65,21 @@ class BulletManager{
 				} else if (eBullets[i].removeMe) {
 					eBullets[i] = null;
 					continue;
-				} else
-				eBullets[i].draw();
+				} 
 			}
+		}
+	}
+
+	public void draw(){
+		//Draw player bullets
+		for (int i = 0; i < pBullets.length; ++i) {
+			if (pBullets[i] != null)
+				pBullets[i].draw();
+		}
+		//Draw enemy bullets
+		for (int i = 0; i < eBullets.length; ++i) {
+			if (eBullets[i] != null)
+				eBullets[i].draw();
 		}
 	}
 };

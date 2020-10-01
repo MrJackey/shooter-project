@@ -37,6 +37,5 @@ class Player extends GameObject {
       return;
 
     bulletManager.instantiateAsPlayer(pos);
-    return;
   }
 }
