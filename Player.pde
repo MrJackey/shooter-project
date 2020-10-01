@@ -2,10 +2,12 @@
 
 class Player extends GameObject {
   int speed = 195,
-    id;
+    id,
+    shootCoolDown = 500;
   float leftBounds, 
     rightBounds;
   color col = color(0, 205, 0);
+  Timer shootTimer;
 
   Player(int id) {
     super();
@@ -16,6 +18,9 @@ class Player extends GameObject {
     this.leftBounds = boundaries * id; 
     this.rightBounds = boundaries * (id + 1);
     this.pos.set(leftBounds + objWidth, height - 100);
+
+    shootTimer = new Timer(shootCoolDown);
+		shootTimer.start();
   }
 
   void draw() {
@@ -39,7 +44,9 @@ class Player extends GameObject {
  }
 
   void fire() { 
-    if (sceneManager.state == GameState.GAMEOVER)
+    if (sceneManager.state != GameState.RUNNING)
+      return;
+    if (!shootTimer.time()) 
       return;
 
     bulletManager.instantiateAsPlayer(pos, id);
