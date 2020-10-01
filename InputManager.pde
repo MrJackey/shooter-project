@@ -3,20 +3,28 @@
 //Input manager
 
 PVector inputAxis = new PVector(0,0);
-boolean left = false;
-boolean right = false;
+boolean p1Left = false;
+boolean p1Right = false;
+boolean p2Left = false;
+boolean p2Right = false;
 
 void keyPressed()
 {
 	//---MOVEMENT---
-	if (keyCode == LEFT || key == 'a' || key == 'A')
-		left = true;
-	if (keyCode == RIGHT || key == 'd' || key == 'D')
-		right = true;
-	
+	if (key == 'a' || key == 'A')
+		p1Left = true;
+	if (key == 'd' || key == 'D')
+		p1Right = true;
+	if (keyCode == LEFT) 
+		p2Left = true;
+	if (keyCode == RIGHT)
+		p2Right = true;
+
 	//---ACTIONS---
 	if(key == ' ')
-		player.fire();
+		playerManager.fire(0);
+	if (key == '.')
+		playerManager.fire(1);
 	if (key == 'p' || key == 'P')
 		sceneManager.togglePause();
 	if (key == 'r' || key == 'R')
@@ -25,18 +33,30 @@ void keyPressed()
 
 void keyReleased()
 {
-	if (keyCode == LEFT || key == 'a' || key == 'A')
-		left = false;
-	if (keyCode == RIGHT || key == 'd' || key == 'D')
-		right = false;
+	if (key == 'a' || key == 'A')
+		p1Left = false;
+	if (key == 'd' || key == 'D')
+		p1Right = false;
+	if (keyCode == LEFT) 
+		p2Left = false;
+	if (keyCode == RIGHT)
+		p2Right = false;
 }
 
-PVector inputAxis(){
+PVector inputAxis(int playerID){
 	inputAxis.set(0, 0);
-	if (left)
-		inputAxis.x -= 1;
-	if (right)
-		inputAxis.x += 1;
+	if (playerID == 0) {
+		if (p1Left)
+			inputAxis.x -= 1;
+		if (p1Right)
+			inputAxis.x += 1;
+	}
+	if (playerID == 1) {
+		if (p2Left)
+			inputAxis.x -= 1;
+		if (p2Right)
+			inputAxis.x += 1;
+	}
 
 	return inputAxis.copy();
 }

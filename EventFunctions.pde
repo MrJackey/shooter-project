@@ -1,3 +1,4 @@
+// Interface functionality: Credit Jonatan
 // Jacob
 
 interface IFunction {
@@ -6,10 +7,18 @@ interface IFunction {
 
 class EventFunction {
 
-  IFunction startGame() {
+  IFunction startSinglePlayer() {
     return new IFunction() {
       public void run() {
-        sceneManager.loadGame();
+        sceneManager.loadGame(1);
+      }
+    };
+  }
+
+  IFunction start2Player() {
+    return new IFunction() {
+      public void run() {
+        sceneManager.loadGame(2);
       }
     };
   }

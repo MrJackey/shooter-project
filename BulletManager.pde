@@ -27,14 +27,14 @@ class BulletManager{
 		}
 	}
 
-	public void instantiateAsPlayer(PVector position){
+	public void instantiateAsPlayer(PVector position, int playerID){
 		if (!timerCoolDown.time())
 			return;
 
 		for (int i = 0; i < pBullets.length; ++i) {
 			if (pBullets[i] == null) {
 				pBullets[i] = new Bullet(position, -1, cpBullet);
-				particleManager.instaniate(player.pos, pShootCooldown);
+				particleManager.instaniate(playerManager.players[playerID].pos, pShootCooldown);
 				break;
 			}
 		}
@@ -59,10 +59,9 @@ class BulletManager{
 		for (int i = 0; i < eBullets.length; ++i) {
 			if(eBullets[i] != null){
 				eBullets[i].move();
-				if (eBullets[i].isColliding(player)) {
+				if (playerManager.bulletIsColliding(eBullets[i]))
 					eBullets[i] = null;
-					sceneManager.setState(sceneManager.state.GAMEOVER);
-				} else if (eBullets[i].removeMe) {
+				else if (eBullets[i].removeMe) {
 					eBullets[i] = null;
 					continue;
 				} 
