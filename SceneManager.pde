@@ -73,6 +73,8 @@ class SceneManager {
     playerManager.update();
     playerManager.draw();
 
+    particleManager.draw();
+
     fill(255);
     textSize(64);
     text("Invaders of Space", width / 2, 100);

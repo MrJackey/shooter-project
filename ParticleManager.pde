@@ -6,10 +6,10 @@ class ParticleManager{
 
 	Particle[] particles = new Particle[10];
 
-	void instaniate(PVector position, int lifeTime){
+	void instantiate(Particle particle){
 		for (int i = 0; i < particles.length; ++i) {
 			if (particles[i] == null)
-				particles[i] = new FireEffect(position, lifeTime);
+				particles[i] = particle;
 		}
 	}
 

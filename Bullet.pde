@@ -51,7 +51,9 @@ public class Bullet extends GameObject{
 		else if (pos.x - objWidth / 2 > object.pos.x + object.objWidth / 2 || pos.x + objWidth / 2 < object.pos.x - object.objWidth / 2) {
 			return false;
 		}
-		else
+		else {
+			particleManager.instantiate(new Explosion(object.pos, 150));
 			return true;
+		}
 	}
 }
