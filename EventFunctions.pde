@@ -23,6 +23,14 @@ class EventFunction {
     };
   }
 
+  IFunction loadTitleScreen() {
+    return new IFunction() {
+      public void run() {
+        sceneManager.loadTitleScreen();
+      }
+    };
+  }
+
   IFunction exitGame() {
     return new IFunction() {
       public void run() {
