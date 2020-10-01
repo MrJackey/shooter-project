@@ -32,7 +32,7 @@ class SceneManager {
 
     fill(201, 248, 255);
     stroke(201, 248, 255);
-    
+
     ellipse(width * 0.2, (height * 0.1 + 5 * backgroundPos) % height, 5, 5);
 
     ellipse(width * 0.4, (height * 0.35 + 7 * backgroundPos) % height, 7, 7);
@@ -107,7 +107,6 @@ class SceneManager {
     if (state != GameState.RUNNING) 
       drawState();
     scoreManager.drawScore();
-    bulletManager.draw();
     particleManager.draw();
   }
 
