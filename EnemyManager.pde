@@ -138,7 +138,6 @@ class EnemyManager {
 
         if (bullet.isColliding(enemyRow[i])) {
           scoreManager.enemyKilled(enemyRow[i]);
-          particleManager.instantiate(new Explosion(enemyRow[i].pos, 150));
           enemyRow[i] = null;
           return true;
         }
