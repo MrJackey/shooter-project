@@ -4,6 +4,7 @@ EventFunction eventFunctions = new EventFunction();
 ScoreManager scoreManager = new ScoreManager();
 BulletManager bulletManager = new BulletManager();
 ParticleManager particleManager = new ParticleManager();
+PlayerManager playerManager = new PlayerManager();
 Player player;
 static final int FPS = 60;
 

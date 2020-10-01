@@ -52,10 +52,11 @@ class SceneManager {
   }
 
   void loadTitleScreen() {
-    buttons = new Button[2];
-    buttons[0] = new Button(width / 2, height / 2, 150, 50, "Start Game", 20, eventFunctions.startGame());
-    buttons[1] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
-    player = new Player(100, height - 100);
+    buttons = new Button[3];
+    buttons[0] = new Button(width / 2, height * 0.4, 150, 50, "SinglePlayer", 20, eventFunctions.startSinglePlayer());
+    buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Player", 20, eventFunctions.start2Player());
+    buttons[2] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
+    playerManager.setPlayers(playerManager.playerCount);
     
     scene = GameScene.TITLESCREEN;
     state = GameState.RUNNING;
@@ -67,8 +68,8 @@ class SceneManager {
     bulletManager.update();
     bulletManager.draw();
 
-    player.move();
-    player.draw();
+    playerManager.update();
+    playerManager.draw();
 
     fill(255);
     textSize(64);
@@ -81,9 +82,9 @@ class SceneManager {
     }
   }
 
-  void loadGame() {
+  void loadGame(int playerCount) {
     buttons = new Button[0];
-    player = new Player(player.pos.x, player.pos.y);
+    playerManager.setPlayers(playerCount);
     enemyManager.loadEnemies();
     enemyManager.resetTimers();
 
@@ -95,13 +96,13 @@ class SceneManager {
     drawBackground();
 
     if (state == GameState.RUNNING) {
-      player.move();
+      playerManager.update();
       bulletManager.update();
       enemyManager.update();
     }
 
     enemyManager.draw();
-    player.draw();
+    playerManager.draw();
     bulletManager.draw();
 
     if (state != GameState.RUNNING) 
@@ -122,7 +123,7 @@ class SceneManager {
   }
 
   void drawState() {
-    fill(player.col);
+    fill(255);
     textAlign(CENTER, CENTER);
     textSize(64);
     text(state.name(), width / 2, height / 2);

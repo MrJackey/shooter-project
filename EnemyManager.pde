@@ -42,7 +42,7 @@ class EnemyManager {
         for (Enemy enemy : enemyRow) {
           if (enemy == null) 
             continue;
-          if (enemy.isOutsideBounds())
+          if (!advance && enemy.isOutsideBounds())
             advance = true;
           enemy.update();
         }
@@ -80,7 +80,7 @@ class EnemyManager {
           continue;
         
         Enemy enemy = enemyRows[i][j];
-        if (abs(enemy.pos.y - player.pos.y) < enemy.objHeight) {
+        if (enemy.pos.y >= playerManager.loseY) {
           sceneManager.setState(GameState.GAMEOVER);
           return;
         }

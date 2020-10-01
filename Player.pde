@@ -1,14 +1,21 @@
 // Jacob
 
 class Player extends GameObject {
-  int speed = 195;
+  int speed = 195,
+    id;
+  float leftBounds, 
+    rightBounds;
   color col = color(0, 205, 0);
 
-  Player(float x, float y) {
+  Player(int id) {
     super();
-    this.pos.set(x, y);
     objWidth = 50;
     objHeight = 20;
+    float boundaries = width / playerManager.playerCount;
+    this.id = id;
+    this.leftBounds = boundaries * id; 
+    this.rightBounds = boundaries * (id + 1);
+    this.pos.set(leftBounds + objWidth, height - 100);
   }
 
   void draw() {
@@ -20,13 +27,12 @@ class Player extends GameObject {
     rect(pos.x, pos.y - objHeight / 2, objWidth * 0.25, objHeight * 0.9, 5);
   }
 
-  void move()
-  {
-    PVector inputTemp = inputAxis();
+  void move() {
+    PVector inputTemp = inputAxis(id);
 
-    if (pos.x <= (objWidth / 2) && inputTemp.x < 0)
+    if (pos.x <= (leftBounds + objWidth / 2) && inputTemp.x < 0)
      inputTemp.x = 0;
-   else if (pos.x >= (width - objWidth / 2) && inputTemp.x > 0)
+   else if (pos.x >= (rightBounds - objWidth / 2) && inputTemp.x > 0)
      inputTemp.x = 0;
 
    pos.add(inputTemp.mult(Time.deltaTime * speed));
@@ -36,6 +42,6 @@ class Player extends GameObject {
     if (sceneManager.state == GameState.GAMEOVER)
       return;
 
-    bulletManager.instantiateAsPlayer(pos);
+    bulletManager.instantiateAsPlayer(pos, id);
   }
 }
