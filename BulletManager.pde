@@ -13,7 +13,7 @@ class BulletManager {
 	BulletManager() {}
 
 	void reset() {
-		pBullets = new Bullet[4];
+		pBullets = new Bullet[playerManager.playerCount * 2];
 		eBullets = new Bullet[15];
 	}
 
