@@ -2,10 +2,12 @@
 
 class Player extends GameObject {
   int speed = 195,
-    id;
+    id,
+    shootCoolDown = 500;
   float leftBounds, 
     rightBounds;
   color col = color(0, 205, 0);
+  Timer shootTimer;
 
   Player(int id) {
     super();
@@ -16,6 +18,9 @@ class Player extends GameObject {
     this.leftBounds = boundaries * id; 
     this.rightBounds = boundaries * (id + 1);
     this.pos.set(leftBounds + objWidth, height - 100);
+
+    shootTimer = new Timer(shootCoolDown);
+		shootTimer.start();
   }
 
   void draw() {
@@ -25,6 +30,22 @@ class Player extends GameObject {
 
     rect(pos.x, pos.y, objWidth, objHeight, 7);
     rect(pos.x, pos.y - objHeight / 2, objWidth * 0.25, objHeight * 0.9, 5);
+
+    stroke(255);
+    strokeWeight(1);
+    // Draw line to show player boundaries
+    if (rightBounds < width * 0.99) {
+      line(rightBounds, pos.y - objHeight, rightBounds, pos.y + objHeight);
+    }
+
+    // Draw circle to show reloading
+    float cdRemaining = (float)shootTimer.currentTime() / shootCoolDown;
+    if (cdRemaining >= 1)
+      cdRemaining = 1;
+
+    noFill();
+    arc(pos.x - objWidth / 2 + (objWidth / 2) * cdRemaining, pos.y + objHeight, objHeight / 2, objHeight / 2, HALF_PI, PI + HALF_PI);
+    arc(pos.x + objWidth / 2 - (objWidth / 2) * cdRemaining, pos.y + objHeight, objHeight / 2, objHeight / 2, PI + HALF_PI, TWO_PI + HALF_PI);
   }
 
   void move() {
@@ -39,7 +60,9 @@ class Player extends GameObject {
  }
 
   void fire() { 
-    if (sceneManager.state == GameState.GAMEOVER)
+    if (sceneManager.state != GameState.RUNNING)
+      return;
+    if (!shootTimer.time()) 
       return;
 
     bulletManager.instantiateAsPlayer(pos, id);

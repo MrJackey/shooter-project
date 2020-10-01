@@ -3,7 +3,7 @@
 class EnemyManager {
   int enemyRowCount = 5,
   enemyPerRowCount = 11,
-  moveCooldDown = 1000,
+  moveCoolDown = 1000,
   fireCoolDown = 1000,
   gridY = 50;
   Enemy[][] enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
@@ -14,7 +14,8 @@ class EnemyManager {
   EnemyManager() {}
 
   void resetTimers() {
-    moveTimer = new Timer(moveCooldDown);
+    fireCoolDown = 1000 / playerManager.playerCount;
+    moveTimer = new Timer(moveCoolDown);
     moveTimer.start();
     fireTimer = new Timer(fireCoolDown);
     fireTimer.start();

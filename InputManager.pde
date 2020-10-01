@@ -63,7 +63,7 @@ PVector inputAxis(int playerID){
 
 void mousePressed() {
 	for (Button button : sceneManager.buttons) {
-		if (button.isClicked()) {
+		if (button.isHovered()) {
 			button.function.run();
 			break;
 		}
