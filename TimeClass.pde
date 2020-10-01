@@ -48,4 +48,9 @@ public class Timer {
 			return false;
 		}
 	}
+
+	public long currentTime() 
+	{
+		return Time.currentTime - _timerStart;
+	}
 };
