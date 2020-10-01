@@ -58,6 +58,7 @@ class SceneManager {
     buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Players", 20, eventFunctions.start2Player());
     buttons[2] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
     playerManager.setPlayers(playerManager.playerCount);
+    bulletManager.reset();
     
     scene = GameScene.TITLESCREEN;
     state = GameState.RUNNING;
@@ -88,6 +89,7 @@ class SceneManager {
     playerManager.setPlayers(playerCount);
     enemyManager.loadEnemies();
     enemyManager.resetTimers();
+    bulletManager.reset();
 
     scene = GameScene.GAME;
     state = GameState.RUNNING;
