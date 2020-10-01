@@ -15,10 +15,13 @@ class SceneManager {
   GameState state;
   Button[] buttons;
   float backgroundPos = 0;
+  Timer starTimer;
 
   SceneManager() {
     scene = GameScene.TITLESCREEN;
     state = GameState.RUNNING;
+    starTimer = new Timer(500);
+    starTimer.start();
   }
 
   void setState(GameState newState) {
@@ -28,7 +31,14 @@ class SceneManager {
   }
 
   void drawBackground() {
-    background(0);
+    noStroke();
+    //Mabey do motion blur
+    fill(0, 250);
+    rect(width / 2, height / 2, width, height);
+
+    if (starTimer.time()) {
+      particleManager.instaniate(new PVector(), 1000, 2);
+    }
 
     fill(201, 248, 255);
     stroke(201, 248, 255);

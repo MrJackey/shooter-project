@@ -16,7 +16,7 @@ class FireEffect extends Particle {
 	}
 
 	void draw(){
-		stroke(particleColor);
+		noStroke();
 		fill(particleColor);
 
 		if (activeXSize >= maxXSize && pLifeTime.time()) {
