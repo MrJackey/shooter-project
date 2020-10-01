@@ -18,12 +18,16 @@ class ScoreManager{
 		playerScore += enemy.pointValue = 30;
 	}
 
-	void drawScore(){
+	void draw(){
 		textAlign(LEFT);
 		textSize(35);
 		fill(textColor);
 		text(playerScore,
 			displayPos.x,
 			displayPos.y);
+	}
+
+	void resetScore(){
+		playerScore = 0;
 	}
 };

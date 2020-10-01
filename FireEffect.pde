@@ -12,9 +12,13 @@ class FireEffect extends Particle {
 
 	FireEffect(PVector pos, int lifeTime){
 		super(pos, lifeTime);
+		particleColor = #FFAA00;
 	}
 
 	void draw(){
+		stroke(particleColor);
+		fill(particleColor);
+
 		if (activeXSize >= maxXSize && pLifeTime.time()) {
 			removeMe = true;
 			return;
