@@ -100,14 +100,15 @@ class SceneManager {
       enemyManager.update();
     }
 
+    //---Draw functions---
     enemyManager.draw();
     player.draw();
     bulletManager.draw();
+    scoreManager.draw();
+    particleManager.draw();
 
     if (state != GameState.RUNNING) 
       drawState();
-    scoreManager.drawScore();
-    particleManager.draw();
   }
 
   void togglePause() {
@@ -118,6 +119,7 @@ class SceneManager {
   void reset() {
     if (state == GameState.GAMEOVER) {
       loadTitleScreen();
+      scoreManager.resetScore();
     }
   }
 
