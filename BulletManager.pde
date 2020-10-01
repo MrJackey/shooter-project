@@ -34,7 +34,7 @@ class BulletManager{
 		for (int i = 0; i < pBullets.length; ++i) {
 			if (pBullets[i] == null) {
 				pBullets[i] = new Bullet(position, -1, cpBullet);
-				particleManager.instaniate(playerManager.players[playerID].pos, pShootCooldown);
+				particleManager.instantiate(new FireEffect(playerManager.players[playerID].pos, pShootCooldown));
 				break;
 			}
 		}

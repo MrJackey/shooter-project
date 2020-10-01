@@ -37,6 +37,7 @@ class PlayerManager {
   boolean bulletIsColliding(Bullet bullet) {
     for (Player player : players) {
       if (bullet.isColliding(player)) {
+        particleManager.instantiate(new Explosion(player.pos, 150));
         sceneManager.setState(sceneManager.state.GAMEOVER);
         return true;
       }
