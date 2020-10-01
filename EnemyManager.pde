@@ -14,6 +14,7 @@ class EnemyManager {
   EnemyManager() {}
 
   void resetTimers() {
+    fireCoolDown = 1000 / playerManager.playerCount;
     moveTimer = new Timer(moveCoolDown);
     moveTimer.start();
     fireTimer = new Timer(fireCoolDown);
