@@ -30,6 +30,13 @@ class Player extends GameObject {
 
     rect(pos.x, pos.y, objWidth, objHeight, 7);
     rect(pos.x, pos.y - objHeight / 2, objWidth * 0.25, objHeight * 0.9, 5);
+
+    stroke(255);
+    strokeWeight(1);
+    // Draw line to show player boundaries
+    if (rightBounds < width * 0.99) {
+      line(rightBounds, pos.y - objHeight, rightBounds, pos.y + objHeight);
+    }
   }
 
   void move() {
