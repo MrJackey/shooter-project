@@ -4,7 +4,7 @@
 
 public class Bullet extends GameObject{
 	int speed = 800;
-	color colorBullet = #FFFFFF;
+	color bColor = #FFFFFF;
 	boolean removeMe = false;
 
 	Bullet(PVector startPos, int direction)
@@ -21,13 +21,13 @@ public class Bullet extends GameObject{
 		this.vel.set(0, direction);
 		this.objWidth = 5;
 		this.objHeight = objWidth * 3;
-		colorBullet = bulletColor;
+		bColor = bulletColor;
 	}
 
 	void draw(){
 		rectMode(CENTER);
-		stroke(colorBullet);
-		fill(colorBullet);
+		stroke(bColor);
+		fill(bColor);
 		rect(pos.x, pos.y, objWidth, objHeight);
 	}
 
