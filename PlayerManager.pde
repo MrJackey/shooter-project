@@ -30,7 +30,7 @@ class PlayerManager {
   }
 
   void fire(int playerID) {
-    if (players[playerID] != null)
+    if (players.length - 1 >= playerID)
       players[playerID].fire();
   }
 

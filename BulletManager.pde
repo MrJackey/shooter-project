@@ -2,20 +2,19 @@
 //Robin
 //Bullet manager
 
-class BulletManager{
+class BulletManager {
 	color cpBullet = #00BBBB;
 	color ceBullet = #FF0000;
-	Bullet[] pBullets = new Bullet[2];
-	Bullet[] eBullets = new Bullet[15];
+	Bullet[] pBullets = new Bullet[0];
+	Bullet[] eBullets = new Bullet[0];
 
-	int pShootCooldown = 100;
-	int pCoolTime = 500;
-	Timer timerCoolDown;
+	int pShootEffectDuration = 100;
 
-	BulletManager(){
-		//Move to player
-		timerCoolDown = new Timer(pCoolTime);
-		timerCoolDown.start();
+	BulletManager() {}
+
+	void reset() {
+		pBullets = new Bullet[4];
+		eBullets = new Bullet[15];
 	}
 
 	public void instantiateAsEnemy(PVector position){
@@ -28,13 +27,10 @@ class BulletManager{
 	}
 
 	public void instantiateAsPlayer(PVector position, int playerID){
-		if (!timerCoolDown.time())
-			return;
-
 		for (int i = 0; i < pBullets.length; ++i) {
 			if (pBullets[i] == null) {
 				pBullets[i] = new Bullet(position, -1, cpBullet);
-				particleManager.instaniate(playerManager.players[playerID].pos, pShootCooldown);
+				particleManager.instaniate(playerManager.players[playerID].pos, pShootEffectDuration);
 				break;
 			}
 		}
