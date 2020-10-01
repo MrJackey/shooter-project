@@ -7,7 +7,7 @@ class EnemyManager {
   fireCoolDown = 1000,
   gridY = 50;
   Enemy[][] enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
-  int[] deadRows = new int[enemyPerRowCount];
+  int[] deadColumns = new int[enemyPerRowCount];
   Timer moveTimer;
   Timer fireTimer;
 
@@ -37,6 +37,9 @@ class EnemyManager {
 
   void update() {
     boolean advance = false;
+    if (hasPlayerWon())
+      sceneManager.loadVictory();
+    
     if (moveTimer.time()) {
       for (Enemy[] enemyRow : enemyRows) {
         for (Enemy enemy : enemyRow) {
@@ -72,7 +75,7 @@ class EnemyManager {
 
   void checkPlayerCollision() {
     for (int i = enemyRowCount - 1; i >= 0; i--) {
-      if (deadRows[i] == 1)
+      if (deadColumns[i] == 1)
         continue;
 
       for (int j = enemyPerRowCount - 1; j >= 0; j--) {
@@ -88,6 +91,18 @@ class EnemyManager {
     }
   }
 
+  boolean hasPlayerWon() {
+    for (int i = enemyPerRowCount - 1; i >= 0; i--) {
+      if (deadColumns[i] == 1)
+        continue;
+      for (int j = 0; j < enemyRowCount - 1; j++) {
+        if (enemyRows[j][i] != null)
+          return false;
+      }
+    }
+    return true;
+  }
+
   void draw() {
     for (Enemy[] enemyRow : enemyRows) {
       for (Enemy enemy : enemyRow) {
@@ -99,19 +114,19 @@ class EnemyManager {
   void EnemyFire(int randColumn) {
     for (int i = enemyRowCount - 1; i >= 0; i--) {
 
-      if (deadRows[randColumn] != 1 && enemyRows[i][randColumn] != null){
+      if (deadColumns[randColumn] != 1 && enemyRows[i][randColumn] != null){
         //Fire from enemy
         enemyRows[i][randColumn].fire();
         return;
       }
       //If no enemies are alive on the
-      if (i == 0 || deadRows[randColumn] == 1) {
-        deadRows[randColumn] = 1;
+      if (i == 0 || deadColumns[randColumn] == 1) {
+        deadColumns[randColumn] = 1;
         randColumn = int(random(0, enemyPerRowCount));
         i = enemyRowCount - 1;
       }
       //If no enemies are alive
-      if (!contains(deadRows, 0)) {
+      if (!contains(deadColumns, 0)) {
         enemyRowCount = 0;
       }
     } 

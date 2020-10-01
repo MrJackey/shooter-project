@@ -28,6 +28,11 @@ void draw() {
 		case GAME :
 			sceneManager.drawGame();
 		break;	
+		case VICTORY : 
+			sceneManager.drawVictory();
+		break;
+		default : 
+		break;	
 	}
 	deltaTimeEnd();
 }

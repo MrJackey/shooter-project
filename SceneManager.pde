@@ -2,6 +2,7 @@
 enum GameScene {
   TITLESCREEN,
   GAME,
+  VICTORY,
 }
 
 enum GameState {
@@ -54,7 +55,7 @@ class SceneManager {
   void loadTitleScreen() {
     buttons = new Button[3];
     buttons[0] = new Button(width / 2, height * 0.4, 150, 50, "SinglePlayer", 20, eventFunctions.startSinglePlayer());
-    buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Player", 20, eventFunctions.start2Player());
+    buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Players", 20, eventFunctions.start2Player());
     buttons[2] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
     playerManager.setPlayers(playerManager.playerCount);
     
@@ -110,6 +111,27 @@ class SceneManager {
 
     if (state != GameState.RUNNING) 
       drawState();
+  }
+
+  void loadVictory() {
+    buttons = new Button[1];
+    buttons[0] = new Button(width / 2, height * 0.6, 250, 50, "Return to title screen", 20, eventFunctions.loadTitleScreen());
+    
+    scene = GameScene.VICTORY;
+    state = GameState.RUNNING;
+  }
+
+  void drawVictory() {
+    drawBackground();
+
+    textAlign(CENTER, CENTER);
+    textSize(64);
+    text("YOU WON", width / 2, height * 0.33);
+    text(String.format("You scored: %d", scoreManager.playerScore), width / 2, height * 0.45);
+
+    for (Button button : buttons) {
+      button.draw();
+    }
   }
 
   void togglePause() {
