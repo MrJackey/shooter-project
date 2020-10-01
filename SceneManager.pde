@@ -30,7 +30,9 @@ class SceneManager {
   void drawBackground() {
     background(0);
 
-    fill(201, 248, 0);
+    fill(201, 248, 255);
+    stroke(201, 248, 255);
+
     ellipse(width * 0.2, (height * 0.1 + 5 * backgroundPos) % height, 5, 5);
 
     ellipse(width * 0.4, (height * 0.35 + 7 * backgroundPos) % height, 7, 7);
@@ -62,6 +64,9 @@ class SceneManager {
   void drawTitleScreen() {
     drawBackground();
 
+    bulletManager.update();
+    bulletManager.draw();
+
     player.move();
     player.draw();
 
@@ -91,15 +96,18 @@ class SceneManager {
 
     if (state == GameState.RUNNING) {
       player.move();
+      bulletManager.update();
       enemyManager.update();
     }
 
     enemyManager.draw();
     player.draw();
+    bulletManager.draw();
 
     if (state != GameState.RUNNING) 
       drawState();
     scoreManager.drawScore();
+    particleManager.draw();
   }
 
   void togglePause() {
