@@ -17,13 +17,6 @@ class EnemyManager {
   void reset() {
     enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
     deadColumns = new int[enemyPerRowCount];
-
-    moveTimer = new Timer(moveCoolDown);
-    moveTimer.start();
-
-    fireCoolDown = 1000 / playerManager.playerCount;
-    fireTimer = new Timer(fireCoolDown);
-    fireTimer.start();
   }
 
   void loadEnemies() {
@@ -40,6 +33,13 @@ class EnemyManager {
       enemyRows[3][i] = new Octopus(gridX * (i + 1), 4*gridY);
       enemyRows[4][i] = new Octopus(gridX * (i + 1), 5*gridY);
     }
+
+    moveTimer = new Timer(moveCoolDown);
+    moveTimer.start();
+
+    fireCoolDown = 1000 / playerManager.playerCount;
+    fireTimer = new Timer(fireCoolDown);
+    fireTimer.start();
   }
 
   void update() {
