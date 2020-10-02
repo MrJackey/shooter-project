@@ -18,11 +18,12 @@ class Button extends GameObject {
   void draw() {
     rectMode(CENTER);
     fill(255);
-    stroke(0);
+    stroke(0);  
     if (isHovered())
       strokeWeight(1);
     else 
       strokeWeight(5);
+      
     rect(pos.x, pos.y, objWidth, objHeight);
 
     fill(0);

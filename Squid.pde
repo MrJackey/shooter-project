@@ -4,15 +4,17 @@ class Squid extends Enemy {
 
   Squid(float x, float y) {
     super(x, y);
-    pointValue = 30;
+    this.pointValue = 30;
   }
 
   void draw() {
     super.draw();
     stroke(255);
 
+    // Body
     triangle(pos.x - radius, pos.y, pos.x, pos.y - radius, pos.x + radius, pos.y);
 
+    // Legs
     if (anim == 0) {
       line(pos.x, pos.y, pos.x - radius, pos.y + radius);
       line(pos.x, pos.y, pos.x + radius, pos.y + radius);

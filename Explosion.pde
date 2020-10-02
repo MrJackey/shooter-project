@@ -10,7 +10,7 @@ class Explosion extends Particle {
     this.particleColor = #FFAA00;
 
     for (int i = 0; i < angleCount; i++) {
-      angles[i] = PVector.fromAngle((TWO_PI / angleCount) * i);
+      this.angles[i] = PVector.fromAngle((TWO_PI / angleCount) * i);
     }
   }
 

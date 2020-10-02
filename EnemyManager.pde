@@ -4,6 +4,7 @@ class EnemyManager {
   int enemyRowCount = 5,
   enemyPerRowCount = 11,
   moveCoolDown = 1000,
+  minMoveCoolDown = 500,
   fireCoolDown = 1000,
   gridY = 50;
   Enemy[][] enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
@@ -14,15 +15,17 @@ class EnemyManager {
   EnemyManager() {}
 
   void resetTimers() {
-    fireCoolDown = 1000 / playerManager.playerCount;
     moveTimer = new Timer(moveCoolDown);
     moveTimer.start();
+
+    fireCoolDown = 1000 / playerManager.playerCount;
     fireTimer = new Timer(fireCoolDown);
     fireTimer.start();
   }
 
   void loadEnemies() {
-    float gridX = width / (enemyPerRowCount + 1); 
+    float gridX = width / (enemyPerRowCount + 1);
+
     for (int i = 0; i < enemyPerRowCount; i++) {
       enemyRows[0][i] = new Squid(gridX * (i + 1), gridY);
     }
@@ -37,9 +40,10 @@ class EnemyManager {
   }
 
   void update() {
-    boolean advance = false;
     if (hasPlayerWon())
       sceneManager.loadVictory();
+
+    boolean advance = false;
     
     if (moveTimer.time()) {
       for (Enemy[] enemyRow : enemyRows) {
@@ -52,7 +56,9 @@ class EnemyManager {
         }
       }
 
-      moveTimer._waitTime *= 0.99; 
+      if (moveTimer.waitTime > minMoveCoolDown)
+        moveTimer.waitTime *= 0.99; 
+
       if (advance)
         advance(gridY);
     }
@@ -92,50 +98,43 @@ class EnemyManager {
     }
   }
 
-  boolean hasPlayerWon() {
-    for (int i = enemyPerRowCount - 1; i >= 0; i--) {
-      if (deadColumns[i] == 1)
-        continue;
-      for (int j = 0; j < enemyRowCount - 1; j++) {
-        if (enemyRows[j][i] != null)
-          return false;
-      }
-    }
-    return true;
-  }
-
   void draw() {
     for (Enemy[] enemyRow : enemyRows) {
       for (Enemy enemy : enemyRow) {
-        if (enemy == null) continue;
+        if (enemy == null) 
+          continue;
         enemy.draw();
       }
     }
   }
+
   void EnemyFire(int randColumn) {
     for (int i = enemyRowCount - 1; i >= 0; i--) {
-
-      if (deadColumns[randColumn] != 1 && enemyRows[i][randColumn] != null){
+      if (deadColumns[randColumn] != 1 && enemyRows[i][randColumn] != null) {
         //Fire from enemy
         enemyRows[i][randColumn].fire();
         return;
       }
+
       //If no enemies are alive on the
       if (i == 0 || deadColumns[randColumn] == 1) {
         deadColumns[randColumn] = 1;
         randColumn = int(random(0, enemyPerRowCount));
         i = enemyRowCount - 1;
       }
+
       //If no enemies are alive
       if (!contains(deadColumns, 0)) {
         enemyRowCount = 0;
       }
     } 
-}
+  }
+  
   boolean bulletIsColliding(Bullet bullet) {
     for (Enemy[] enemyRow : enemyRows) {
       for (int i = 0; i < enemyRow.length; i++) {
-        if (enemyRow[i] == null) continue;
+        if (enemyRow[i] == null) 
+          continue;
 
         if (bullet.isColliding(enemyRow[i])) {
           scoreManager.enemyKilled(enemyRow[i]);
@@ -145,5 +144,18 @@ class EnemyManager {
       }
     }
     return false;
+  }
+
+  boolean hasPlayerWon() {
+    for (int i = enemyPerRowCount - 1; i >= 0; i--) {
+      if (deadColumns[i] == 1)
+        continue;
+
+      for (int j = 0; j < enemyRowCount - 1; j++) {
+        if (enemyRows[j][i] != null)
+          return false;
+      }
+    }
+    return true;
   }
 }
