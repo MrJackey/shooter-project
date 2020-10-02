@@ -66,7 +66,7 @@ class Player extends GameObject {
   }
 
   void fire() { 
-    if (sceneManager.state != GameState.RUNNING)
+    if (sceneManager.getState() != GameStates.RUNNING)
       return;
     if (!shootTimer.time()) 
       return;

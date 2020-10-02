@@ -14,7 +14,10 @@ class EnemyManager {
 
   EnemyManager() {}
 
-  void resetTimers() {
+  void reset() {
+    enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
+    deadColumns = new int[enemyPerRowCount];
+
     moveTimer = new Timer(moveCoolDown);
     moveTimer.start();
 
@@ -91,7 +94,7 @@ class EnemyManager {
         
         Enemy enemy = enemyRows[i][j];
         if (enemy.pos.y >= playerManager.loseY) {
-          sceneManager.setState(GameState.GAMEOVER);
+          sceneManager.setState(GameStates.GAMEOVER);
           return;
         }
       }

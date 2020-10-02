@@ -36,7 +36,7 @@ class PlayerManager {
   boolean bulletIsColliding(Bullet bullet) {
     for (Player player : players) {
       if (bullet.isColliding(player)) {
-        sceneManager.setState(sceneManager.state.GAMEOVER);
+        sceneManager.setState(GameStates.GAMEOVER);
         return true;
       }
     }
