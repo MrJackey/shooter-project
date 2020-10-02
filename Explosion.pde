@@ -18,7 +18,7 @@ class Explosion extends Particle {
     super.draw();
 
     for (PVector angle : angles) {
-      line(drawPos.x, drawPos.y, drawPos.x + angle.x, drawPos.y + angle.y);
+      line(pos.x, pos.y, pos.x + angle.x, pos.y + angle.y);
       angle.mult(expansionRate);
     }
   }
