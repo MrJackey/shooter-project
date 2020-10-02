@@ -7,6 +7,14 @@ interface IFunction {
 
 class EventFunction {
 
+  IFunction loadTitleScreen() {
+    return new IFunction() {
+      public void run() {
+        sceneManager.loadTitleScreen();
+      }
+    };
+  }
+
   IFunction startSinglePlayer() {
     return new IFunction() {
       public void run() {
@@ -19,14 +27,6 @@ class EventFunction {
     return new IFunction() {
       public void run() {
         sceneManager.loadGame(2);
-      }
-    };
-  }
-
-  IFunction loadTitleScreen() {
-    return new IFunction() {
-      public void run() {
-        sceneManager.loadTitleScreen();
       }
     };
   }

@@ -1,4 +1,5 @@
 //Jacob
+
 enum GameScene {
   TITLESCREEN,
   GAME,
@@ -23,9 +24,8 @@ class SceneManager {
   }
 
   void setState(GameState newState) {
-    if (scene == GameScene.GAME) {
+    if (scene == GameScene.GAME)
       state = newState;
-    }
   }
 
   void drawBackground() {
@@ -57,6 +57,7 @@ class SceneManager {
     buttons[0] = new Button(width / 2, height * 0.4, 150, 50, "SinglePlayer", 20, eventFunctions.startSinglePlayer());
     buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Players", 20, eventFunctions.start2Player());
     buttons[2] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
+
     playerManager.setPlayers(playerManager.playerCount);
     bulletManager.reset();
     
@@ -130,6 +131,7 @@ class SceneManager {
 
     textAlign(CENTER, CENTER);
     textSize(64);
+    
     text("YOU WON", width / 2, height * 0.33);
     text(String.format("You scored: %d", scoreManager.playerScore), width / 2, height * 0.45);
 
