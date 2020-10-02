@@ -4,7 +4,7 @@ class GameScene extends Scene {
 
 	GameScene(int playerCount) {
 		super();
-    playerManager.setPlayers(playerCount);
+    playerManager.resetPlayers(playerCount);
     enemyManager.loadEnemies();
 	}
 
@@ -20,6 +20,7 @@ class GameScene extends Scene {
     //---Draw functions---
     enemyManager.draw();
     playerManager.draw();
+    playerManager.drawLives();
     bulletManager.draw();
     scoreManager.draw();
     particleManager.draw();
