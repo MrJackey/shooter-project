@@ -8,8 +8,7 @@ boolean p1Right = false;
 boolean p2Left = false;
 boolean p2Right = false;
 
-void keyPressed()
-{
+void keyPressed() {
 	//---MOVEMENT---
 	if (key == 'a' || key == 'A')
 		p1Left = true;
@@ -31,8 +30,7 @@ void keyPressed()
 		sceneManager.reset();
 }
 
-void keyReleased()
-{
+void keyReleased() {
 	if (key == 'a' || key == 'A')
 		p1Left = false;
 	if (key == 'd' || key == 'D')
@@ -43,7 +41,16 @@ void keyReleased()
 		p2Right = false;
 }
 
-PVector inputAxis(int playerID){
+void mousePressed() {
+	for (Button button : sceneManager.buttons) {
+		if (button.isHovered()) {
+			button.function.run();
+			break;
+		}
+	}
+}
+
+PVector inputAxis(int playerID) {
 	inputAxis.set(0, 0);
 	if (playerID == 0) {
 		if (p1Left)
@@ -59,13 +66,4 @@ PVector inputAxis(int playerID){
 	}
 
 	return inputAxis.copy();
-}
-
-void mousePressed() {
-	for (Button button : sceneManager.buttons) {
-		if (button.isHovered()) {
-			button.function.run();
-			break;
-		}
-	}
 }
