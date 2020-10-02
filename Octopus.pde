@@ -4,15 +4,19 @@ class Octopus extends Enemy {
   
   Octopus(float x, float y) {
     super(x, y);
-    pointValue = 40;
+    this.pointValue = 40;
   }
 
   void draw() {
     super.draw();
     noStroke();
-    arc(pos.x, pos.y, objWidth, objHeight, PI, TWO_PI);
-    stroke(255);
     
+    // Body
+    arc(pos.x, pos.y, objWidth, objHeight, PI, TWO_PI);
+    
+    stroke(255);
+
+    // Legs
     if (anim == 0) {
       line(pos.x, pos.y, pos.x - radius, pos.y + radius);
       line(pos.x, pos.y, pos.x + radius, pos.y + radius);

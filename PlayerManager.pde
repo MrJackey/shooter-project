@@ -3,14 +3,13 @@
 class PlayerManager {
   Player[] players = new Player[0];
   int playerCount = 1,
-    loseY;
+    loseY = height - 100;
 
   PlayerManager() {}
 
   void setPlayers(int totalPlayers) {
     playerCount = totalPlayers;
     players = new Player[playerCount];
-    loseY = height - 100;
 
     for (int i = 0; i < players.length; i++) {
       players[i] = new Player(i);

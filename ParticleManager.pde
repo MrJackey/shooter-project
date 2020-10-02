@@ -2,11 +2,10 @@
 //Robin
 //Particle manager
 
-class ParticleManager{
-
+class ParticleManager {
 	Particle[] particles = new Particle[10];
 
-	void instantiate(Particle particle){
+	void instantiate(Particle particle) {
 		for (int i = 0; i < particles.length; ++i) {
 			if (particles[i] == null)
 				particles[i] = particle;
@@ -26,4 +25,4 @@ class ParticleManager{
 			particles[i].draw();
 		}
 	}
-};
+}

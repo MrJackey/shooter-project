@@ -7,50 +7,41 @@ public static class Time {
 	static public long time;
 	static public long currentTime;
 	static public final float MULTI_DELTA = 0.001f;
-};
+}
 
 public class Timer {
-	private int _waitTime;
-	private long _timerStart;
-	private boolean _timerActive = false;
+	private int waitTime;
+	private long timerStart;
+	private boolean timerActive = false;
 
-	public Timer(int waitTime)
-	{
-		_waitTime = waitTime;
+	public Timer(int waitTime) {
+		this.waitTime = waitTime;
 	}
 
-	public void start()
-	{
-		if (_timerActive)
+	public void start() {
+		if (timerActive)
 			return;
 
-		_timerActive = true;
-		_timerStart = millis();
+		timerActive = true;
+		timerStart = millis();
 	}
 
-	public void stop()
-	{
-		if (!_timerActive)
+	public void stop() {
+		if (!timerActive)
 			return;
 
-		_timerActive = false;
+		timerActive = false;
 	}
 
-	public boolean time()
-	{
-		if (_timerActive && (_waitTime <= (Time.currentTime - _timerStart)))
-		{
-			_timerStart = millis();
+	public boolean time() {
+		if (timerActive && (waitTime <= (Time.currentTime - timerStart))) {
+			timerStart = millis();
 			return true;
-		}
-		else
-		{
+		} else
 			return false;
-		}
 	}
 
-	public long currentTime() 
-	{
-		return Time.currentTime - _timerStart;
+	public long currentTime() {
+		return Time.currentTime - timerStart;
 	}
-};
+}

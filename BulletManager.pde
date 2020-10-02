@@ -12,31 +12,7 @@ class BulletManager {
 
 	BulletManager() {}
 
-	void reset() {
-		pBullets = new Bullet[playerManager.playerCount * 2];
-		eBullets = new Bullet[15];
-	}
-
-	public void instantiateAsEnemy(PVector position){
-		for (int i = 0; i < eBullets.length; ++i) {
-			if (eBullets[i] == null) {
-				eBullets[i] = new Bullet(position, 1, ceBullet);
-				break;
-			}
-		}
-	}
-
-	public void instantiateAsPlayer(PVector position, int playerID){
-		for (int i = 0; i < pBullets.length; ++i) {
-			if (pBullets[i] == null) {
-				pBullets[i] = new Bullet(position, -1, cpBullet);
-				particleManager.instantiate(new FireEffect(playerManager.players[playerID].pos, pShootEffectDuration));
-				break;
-			}
-		}
-	}
-
-	public void update(){
+	public void update() {
 		//----Bullet update Player----
 		for (int i = 0; i < pBullets.length; ++i) {
 			if (pBullets[i] == null || enemyManager.bulletIsColliding(pBullets[i])){
@@ -65,7 +41,7 @@ class BulletManager {
 		}
 	}
 
-	public void draw(){
+	public void draw() {
 		//Draw player bullets
 		for (int i = 0; i < pBullets.length; ++i) {
 			if (pBullets[i] != null)
@@ -77,4 +53,28 @@ class BulletManager {
 				eBullets[i].draw();
 		}
 	}
-};
+
+	void reset() {
+		pBullets = new Bullet[playerManager.playerCount * 2];
+		eBullets = new Bullet[15];
+	}
+
+	public void instantiateAsPlayer(PVector position, int playerID) {
+		for (int i = 0; i < pBullets.length; ++i) {
+			if (pBullets[i] == null) {
+				pBullets[i] = new Bullet(position, -1, cpBullet);
+				particleManager.instantiate(new FireEffect(playerManager.players[playerID].pos, pShootEffectDuration));
+				break;
+			}
+		}
+	}
+
+	public void instantiateAsEnemy(PVector position) {
+		for (int i = 0; i < eBullets.length; ++i) {
+			if (eBullets[i] == null) {
+				eBullets[i] = new Bullet(position, 1, ceBullet);
+				break;
+			}
+		}
+	}
+}

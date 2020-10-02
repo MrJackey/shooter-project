@@ -1,8 +1,10 @@
+// Jacob
+
 class Crab extends Enemy {
 
   Crab(float x, float y) {
    super(x, y); 
-   pointValue = 50;
+   this.pointValue = 50;
   }
 
   void draw() {
@@ -31,7 +33,6 @@ class Crab extends Enemy {
       // Mouth
       line(pos.x, pos.y, pos.x - radius, pos.y + radius);
       line(pos.x, pos.y, pos.x + radius, pos.y + radius);
-
     }
     
     drawEyes();

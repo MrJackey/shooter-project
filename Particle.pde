@@ -3,20 +3,19 @@
 //Particle base
 
 class Particle {
-
 	boolean removeMe = false;
 	color particleColor = #FFAA00;
 	Timer pLifeTime;
 
-	PVector drawPos = new PVector();
+	PVector pos = new PVector();
 
 	Particle(PVector pos, int lifeTime) {
-		drawPos = pos;
-		pLifeTime = new Timer(lifeTime);
-		pLifeTime.start();
+		this.pos = pos;
+		this.pLifeTime = new Timer(lifeTime);
+		this.pLifeTime.start();
 	}
 
-	void draw(){
+	void draw() {
 		if (pLifeTime.time()) {
 			removeMe = true;
 			return;
@@ -25,4 +24,4 @@ class Particle {
 		stroke(particleColor);
 		fill(particleColor);
 	}
-};
+}

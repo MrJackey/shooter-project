@@ -1,19 +1,32 @@
-SceneManager sceneManager = new SceneManager();
-EnemyManager enemyManager = new EnemyManager();
-EventFunction eventFunctions = new EventFunction();
-ScoreManager scoreManager = new ScoreManager();
-BulletManager bulletManager = new BulletManager();
-ParticleManager particleManager = new ParticleManager();
-PlayerManager playerManager = new PlayerManager();
-Player player;
+//Shooter project 08
+
+SceneManager sceneManager;
+EnemyManager enemyManager;
+ScoreManager scoreManager;
+BulletManager bulletManager;
+ParticleManager particleManager;
+PlayerManager playerManager;
+
+EventFunction eventFunctions;
+
 static final int FPS = 60;
 
 void setup() {
 	size(800, 800);
 	frameRate(FPS);
 
-	((java.awt.Canvas) surface.getNative()).requestFocus(); //Sets focus to window
-	surface.setLocation(0,0);
+	//Sets focus to window
+	((java.awt.Canvas) surface.getNative()).requestFocus();
+	surface.setLocation(0, 0);
+
+	sceneManager = new SceneManager();
+	enemyManager = new EnemyManager();
+	scoreManager = new ScoreManager();
+	bulletManager = new BulletManager();
+	particleManager = new ParticleManager();
+	playerManager = new PlayerManager();
+
+	eventFunctions = new EventFunction();
 
 	sceneManager.loadTitleScreen();
 }
@@ -31,21 +44,19 @@ void draw() {
 		case VICTORY : 
 			sceneManager.drawVictory();
 		break;
-		default : 
-		break;	
 	}
+
 	deltaTimeEnd();
 }
 
 //Run function as first command in draw()
-void deltaTimeBegin()
-{
+void deltaTimeBegin() {
 	Time.currentTime = millis();
 	Time.deltaTime = (Time.currentTime - Time.time);
 	Time.deltaTime *= Time.MULTI_DELTA;
 }
+
 //Run function as last command in draw()
-void deltaTimeEnd()
-{
+void deltaTimeEnd() {
 	Time.time = Time.currentTime;
 }
