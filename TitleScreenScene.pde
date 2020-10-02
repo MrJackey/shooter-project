@@ -4,10 +4,10 @@ class TitleScreenScene extends Scene {
 	
 	TitleScreenScene() {
 		super();
-		buttons = new Button[3];
-    buttons[0] = new Button(width / 2, height * 0.4, 150, 50, "SinglePlayer", 20, eventFunctions.startSinglePlayer());
-    buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Players", 20, eventFunctions.start2Player());
-    buttons[2] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
+		this.buttons = new Button[3];
+    this.buttons[0] = new Button(width / 2, height * 0.4, 150, 50, "SinglePlayer", 20, eventFunctions.startSinglePlayer());
+    this.buttons[1] = new Button(width / 2, height * 0.4 + 75, 150, 50, "2-Players", 20, eventFunctions.start2Player());
+    this.buttons[2] = new Button(width / 2, height * 0.67, 100, 33, "Quit", 15, eventFunctions.exitGame());
     playerManager.setPlayers(playerManager.playerCount);
 	}
 

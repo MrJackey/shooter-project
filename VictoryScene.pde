@@ -4,8 +4,8 @@ class VictoryScene extends Scene {
 
 	VictoryScene() {
 		super();
-		buttons = new Button[1];
-    buttons[0] = new Button(width / 2, height * 0.6, 250, 50, "Return to title screen", 20, eventFunctions.loadTitleScreen());
+		this.buttons = new Button[1];
+    this.buttons[0] = new Button(width / 2, height * 0.6, 250, 50, "Return to title screen", 20, eventFunctions.loadTitleScreen());
 	}
 
 	void draw() {
