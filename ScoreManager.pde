@@ -9,12 +9,12 @@ class ScoreManager {
 	PVector pos = new PVector();
 
 	ScoreManager() {
-		this.pos.x = width * 0.2;
-		this.pos.y =  height * 0.4;
+		this.pos.x = 10;
+		this.pos.y =  10;
 	}
 
 	void draw() {
-		textAlign(LEFT);
+		textAlign(LEFT, TOP);
 		textSize(35);
 		fill(textColor);
 

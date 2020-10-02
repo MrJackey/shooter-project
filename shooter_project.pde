@@ -1,13 +1,13 @@
 //Shooter project 08
 
-SceneManager sceneManager = new SceneManager();
-EnemyManager enemyManager = new EnemyManager();
-ScoreManager scoreManager = new ScoreManager();
-BulletManager bulletManager = new BulletManager();
-ParticleManager particleManager = new ParticleManager();
-PlayerManager playerManager = new PlayerManager();
+SceneManager sceneManager;
+EnemyManager enemyManager;
+ScoreManager scoreManager;
+BulletManager bulletManager;
+ParticleManager particleManager;
+PlayerManager playerManager;
 
-EventFunction eventFunctions = new EventFunction();
+EventFunction eventFunctions;
 
 static final int FPS = 60;
 
@@ -18,6 +18,15 @@ void setup() {
 	//Sets focus to window
 	((java.awt.Canvas) surface.getNative()).requestFocus();
 	surface.setLocation(0, 0);
+
+	sceneManager = new SceneManager();
+	enemyManager = new EnemyManager();
+	scoreManager = new ScoreManager();
+	bulletManager = new BulletManager();
+	particleManager = new ParticleManager();
+	playerManager = new PlayerManager();
+
+	eventFunctions = new EventFunction();
 
 	sceneManager.loadTitleScreen();
 }
