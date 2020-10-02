@@ -7,7 +7,7 @@ public static class Time {
 	static public long time;
 	static public long currentTime;
 	static public final float MULTI_DELTA = 0.001f;
-};
+}
 
 public class Timer {
 	private int waitTime;
