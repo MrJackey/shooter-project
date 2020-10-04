@@ -1,15 +1,15 @@
 # Our project of creating a space shooter game, Invaders Of Space
-
-Global input:<br/>
-  Pause - "P"
-  Reset - "R"
-
-Player 1 input:
-  Left - "A"
-  Right - "D"
-  Fire - Spacebar
-
-Player 2 input:
-  Left - "<"
-  Right - ">"
-  Fire - "."
+## Inputs
+#### General inputs:<br/>
+  Pause - "P"<br/>
+  Reset - "R"<br/>
+<br/>
+#### Player 1 inputs:<br/>
+  Left - "A"<br/>
+  Right - "D"<br/>
+  Fire - Spacebar<br/>
+<br/>
+#### Player 2 inputs:<br/>
+  Left - "<"<br/>
+  Right - ">"<br/>
+  Fire - "."<br/>
