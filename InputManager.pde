@@ -42,7 +42,7 @@ void keyReleased() {
 }
 
 void mousePressed() {
-	for (Button button : sceneManager.buttons) {
+	for (Button button : sceneManager.currentScene.buttons) {
 		if (button.isHovered()) {
 			button.function.run();
 			break;
