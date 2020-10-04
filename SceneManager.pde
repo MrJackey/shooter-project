@@ -66,6 +66,8 @@ class SceneManager {
   }
 
   void drawTitleScreen() {
+    soundManager.explotion.stop();
+    soundManager.defeat.stop();
     drawBackground();
 
     bulletManager.update();

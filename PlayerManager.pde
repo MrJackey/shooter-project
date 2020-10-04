@@ -37,6 +37,8 @@ class PlayerManager {
     for (Player player : players) {
       if (bullet.isColliding(player)) {
         sceneManager.setState(sceneManager.state.GAMEOVER);
+        soundManager.explotion.play();
+        soundManager.defeat.play();
         return true;
       }
     }
