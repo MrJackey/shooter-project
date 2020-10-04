@@ -14,13 +14,9 @@ class EnemyManager {
 
   EnemyManager() {}
 
-  void resetTimers() {
-    moveTimer = new Timer(moveCoolDown);
-    moveTimer.start();
-
-    fireCoolDown = 1000 / playerManager.playerCount;
-    fireTimer = new Timer(fireCoolDown);
-    fireTimer.start();
+  void reset() {
+    enemyRows = new Enemy[enemyRowCount][enemyPerRowCount];
+    deadColumns = new int[enemyPerRowCount];
   }
 
   void loadEnemies() {
@@ -37,6 +33,13 @@ class EnemyManager {
       enemyRows[3][i] = new Octopus(gridX * (i + 1), 4*gridY);
       enemyRows[4][i] = new Octopus(gridX * (i + 1), 5*gridY);
     }
+
+    moveTimer = new Timer(moveCoolDown);
+    moveTimer.start();
+
+    fireCoolDown = 1000 / playerManager.playerCount;
+    fireTimer = new Timer(fireCoolDown);
+    fireTimer.start();
   }
 
   void update() {
@@ -91,7 +94,7 @@ class EnemyManager {
         
         Enemy enemy = enemyRows[i][j];
         if (enemy.pos.y >= playerManager.loseY) {
-          sceneManager.setState(GameState.GAMEOVER);
+          sceneManager.setState(GameStates.GAMEOVER);
           return;
         }
       }

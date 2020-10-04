@@ -37,18 +37,8 @@ void setup() {
 void draw() {
 	deltaTimeBegin();
 
-	switch (sceneManager.scene) {
-		case TITLESCREEN :
-			sceneManager.drawTitleScreen();
-		break;	
-		case GAME :
-			sceneManager.drawGame();
-		break;	
-		case VICTORY : 
-			sceneManager.drawVictory();
-		break;
-	}
-
+	sceneManager.draw();
+	
 	deltaTimeEnd();
 }
 

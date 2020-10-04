@@ -3,7 +3,6 @@
 // Sound manager
 
 public class SoundManager {
-
 	PApplet parent;
 
 	SoundFile playerFire;
