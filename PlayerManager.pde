@@ -46,7 +46,6 @@ class PlayerManager {
   boolean bulletIsColliding(Bullet bullet) {
     for (Player player : players) {
       if (bullet.isColliding(player)) {
-        soundManager.explotion.play();
         takeDamage();
         return true;
       }
@@ -58,7 +57,7 @@ class PlayerManager {
     playerHealth--;
 
     if (playerHealth <= 0) {
-      soundManager.defeat.play();
+      sounds.defeat.play();
       sceneManager.setState(GameStates.GAMEOVER);
     }
   }
