@@ -1,6 +1,6 @@
 # Our project of creating a space shooter game, Invaders Of Space
 
-Global input:
+Global input:<br/>
   Pause - "P"
   Reset - "R"
 
