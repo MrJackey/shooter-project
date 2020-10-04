@@ -7,6 +7,7 @@ BulletManager bulletManager;
 ParticleManager particleManager;
 PlayerManager playerManager;
 SoundManager soundManager;
+StarsManager starsManager;
 
 EventFunction eventFunctions;
 
@@ -26,8 +27,9 @@ void setup() {
 	bulletManager = new BulletManager();
 	particleManager = new ParticleManager();
 	playerManager = new PlayerManager();
-	//Display loading
+	background(0);
 	soundManager = new SoundManager(this);
+	starsManager = new StarsManager(100);
 
 	eventFunctions = new EventFunction();
 
