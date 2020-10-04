@@ -17,6 +17,8 @@ class SceneManager {
   }
 
   void loadTitleScreen() {
+    soundManager.victory.stop();
+    soundManager.defeat.stop();
     currentScene = new TitleScreenScene();
     
     scene = GameScenes.TITLESCREEN;

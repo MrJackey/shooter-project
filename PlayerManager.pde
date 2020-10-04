@@ -3,8 +3,8 @@
 class PlayerManager {
   Player[] players = new Player[0];
   int playerCount = 1,
-    playerHealth = 3,
-    loseY = height - 100;
+  playerHealth = 3,
+  loseY = height - 100;
 
   PlayerManager() {}
 
@@ -46,6 +46,7 @@ class PlayerManager {
   boolean bulletIsColliding(Bullet bullet) {
     for (Player player : players) {
       if (bullet.isColliding(player)) {
+        soundManager.explotion.play();
         takeDamage();
         return true;
       }
@@ -56,7 +57,9 @@ class PlayerManager {
   void takeDamage() {
     playerHealth--;
 
-    if (playerHealth <= 0)
+    if (playerHealth <= 0) {
+      soundManager.defeat.play();
       sceneManager.setState(GameStates.GAMEOVER);
+    }
   }
 }

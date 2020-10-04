@@ -63,6 +63,7 @@ class BulletManager {
 		for (int i = 0; i < pBullets.length; ++i) {
 			if (pBullets[i] == null) {
 				pBullets[i] = new Bullet(position, -1, cpBullet);
+				soundManager.playerFire.play();
 				particleManager.instantiate(new FireEffect(playerManager.players[playerID].pos, pShootEffectDuration));
 				break;
 			}
@@ -72,6 +73,7 @@ class BulletManager {
 	public void instantiateAsEnemy(PVector position) {
 		for (int i = 0; i < eBullets.length; ++i) {
 			if (eBullets[i] == null) {
+				soundManager.enemyFire.play();
 				eBullets[i] = new Bullet(position, 1, ceBullet);
 				break;
 			}

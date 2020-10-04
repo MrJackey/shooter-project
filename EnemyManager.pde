@@ -141,6 +141,7 @@ class EnemyManager {
 
         if (bullet.isColliding(enemyRow[i])) {
           scoreManager.enemyKilled(enemyRow[i]);
+          soundManager.explotion.play();
           enemyRow[i] = null;
           return true;
         }
@@ -159,6 +160,7 @@ class EnemyManager {
           return false;
       }
     }
+    soundManager.victory.play();
     return true;
   }
 }

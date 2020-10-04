@@ -1,11 +1,12 @@
 //Shooter project 08
-
+import processing.sound.*;
 SceneManager sceneManager;
 EnemyManager enemyManager;
 ScoreManager scoreManager;
 BulletManager bulletManager;
 ParticleManager particleManager;
 PlayerManager playerManager;
+SoundManager soundManager;
 
 EventFunction eventFunctions;
 
@@ -25,6 +26,8 @@ void setup() {
 	bulletManager = new BulletManager();
 	particleManager = new ParticleManager();
 	playerManager = new PlayerManager();
+	//Display loading
+	soundManager = new SoundManager(this);
 
 	eventFunctions = new EventFunction();
 
