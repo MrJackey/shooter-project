@@ -49,7 +49,7 @@ public class Bullet extends GameObject {
 			return false;
 		}
 		else {
-			particleManager.instantiate(new Explosion(object.pos, 150));
+			particleManager.instantiate(new Explosion(pos, 150));
 			return true;
 		}
 	}

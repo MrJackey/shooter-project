@@ -23,6 +23,7 @@ class TitleScreenScene extends Scene {
 
     fill(255);
     textSize(64);
+    textAlign(CENTER, CENTER);
     text("Invaders of Space", width / 2, 100);
 
     for (Button button : buttons) {
