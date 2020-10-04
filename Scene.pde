@@ -23,12 +23,6 @@ class Scene {
 	void drawBackground() {
     background(0);
     starsManager.draw();
-
-    fill(201, 248, 255);
-    stroke(201, 248, 255);
-
-    if (sceneManager.scene == GameScenes.GAME && state == GameStates.RUNNING)
-      backgroundPos += 0.1;
   }
 
 	void drawState() {
