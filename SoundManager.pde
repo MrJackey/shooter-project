@@ -2,7 +2,7 @@
 // Robin
 // Sound manager
 
-public class SoundManager {
+public class Sounds {
 	PApplet parent;
 
 	SoundFile playerFire;
@@ -10,10 +10,10 @@ public class SoundManager {
 	
 	SoundFile defeat;
 	SoundFile victory;
-	SoundFile explotion;
+	SoundFile explosion;
 	SoundFile bulletHit;
 
-	SoundManager(PApplet parent) {
+	Sounds(PApplet parent) {
 		this.parent = parent;
 
 		playerFire = new SoundFile(this.parent, "playerFire.wav");
@@ -22,7 +22,7 @@ public class SoundManager {
 
 		defeat = new SoundFile(this.parent, "defeat.wav");
 		victory = new SoundFile(this.parent, "victory.wav");
-		explotion = new SoundFile(this.parent, "explotion.wav");
+		explosion = new SoundFile(this.parent, "explotion.wav");
 		bulletHit = new SoundFile(this.parent, "bulletHit.wav");
 	}
 }

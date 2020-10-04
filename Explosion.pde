@@ -12,7 +12,7 @@ class Explosion extends Particle {
     for (int i = 0; i < angleCount; i++) {
       this.angles[i] = PVector.fromAngle((TWO_PI / angleCount) * i);
     }
-    soundManager.bulletHit.play();
+    sounds.bulletHit.play();
   }
 
   void draw() {

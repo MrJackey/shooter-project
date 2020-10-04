@@ -50,6 +50,7 @@ public class Bullet extends GameObject {
 		}
 		else {
 			particleManager.instantiate(new Explosion(pos, 150));
+			sounds.explosion.play();
 			return true;
 		}
 	}
