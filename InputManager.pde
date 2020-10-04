@@ -45,6 +45,7 @@ void mousePressed() {
 	for (Button button : sceneManager.currentScene.buttons) {
 		if (button.isHovered()) {
 			button.function.run();
+			sounds.buttonPressed.play();
 			break;
 		}
 	}
